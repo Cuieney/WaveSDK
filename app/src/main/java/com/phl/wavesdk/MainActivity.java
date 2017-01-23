@@ -7,7 +7,6 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.feetsdk.android.FeetSdk;
 import com.feetsdk.android.feetsdk.Music;
 import com.feetsdk.android.feetsdk.download.DownloadControler;
 import com.feetsdk.android.feetsdk.musicplayer.MusicController;
@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         play = findViewById(R.id.play);
         container = findViewById(R.id.download_container);
         bezier = findViewById(R.id.bezier);
-//        feetUiController = FeetSdk.getFeetUiController(this);
-        startService(new Intent(MainActivity.this, Service1.class));
+        feetUiController = FeetSdk.getFeetUiController(this);
+//        startService(new Intent(MainActivity.this, Service1.class));
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

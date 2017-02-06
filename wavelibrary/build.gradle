@@ -117,7 +117,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.liulishuo.filedownloader:library:1.0.2'
     compile 'org.greenrobot:greendao:3.1.1'
-
+    compile 'com.zhy:autolayout:1.4.5'
 }
 
 def siteUrl = 'https://github.com/Cuieney/Crossfader'   // 项目的主页

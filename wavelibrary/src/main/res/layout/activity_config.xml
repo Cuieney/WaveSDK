@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fav_music_bg"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/blue" />
+
+    <LinearLayout
+        android:id="@+id/cancel"
+        android:layout_width="@dimen/back_icon_width"
+        android:layout_height="@dimen/back_icon_height"
+        android:layout_marginLeft="@dimen/singer_choose_x_margin_left"
+        android:layout_marginTop="@dimen/singer_choose_x_margin_top"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_txt"
+            android:textColor="@color/color_reset_singer_normal" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/fav_music_title_margin_top"
+        android:text="@string/private_person_title"
+        android:textColor="@color/fav_music_title"
+        android:textSize="@dimen/fav_music_title_txt_size" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fav_music_line_width"
+        android:layout_marginTop="@dimen/fav_music_line_margin_top"
+        android:background="@color/choose_save_music_theme"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/reset_top_item_height"
+        android:layout_marginTop="@dimen/reset_singer_notification_margin_top"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingTop="10px"
+        android:paddingRight="@dimen/reset_singer_btn_margin_bottom"
+        android:paddingLeft="@dimen/reset_singer_notification_margin_left">
+
+        <TextView
+            android:id="@+id/change_music_library_size_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_music_library_size"
+            android:textColor="@color/black"
+            android:textSize="@dimen/reset_singer_big_txt_size" />
+
+
+        <TextView
+            android:id="@+id/change_music_library_size_noti_txt"
+            android:layout_below="@id/change_music_library_size_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reset_song_library"
+            android:textColor="@color/color_reset_singer_dark"
+            android:textSize="@dimen/reset_singer_small_txt_size" />
+
+        <View
+            android:layout_marginBottom="10px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/fav_music_bg"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/thirty_minute"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/reset_item_height"
+        android:layout_marginTop="@dimen/reset_singer_30_minute_margin_top"
+        android:background="@color/color_reset_singer_normal"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/reset_singer_btn_margin_bottom"
+        android:paddingRight="@dimen/reset_singer_btn_margin_bottom">
+
+        <TextView
+            android:id="@+id/thirty_minute_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/thirty_minute"
+            android:textColor="@color/black"
+            android:textSize="@dimen/reset_singer_big_txt_size" />
+
+        <ImageView
+            android:id="@+id/thirty_icon"
+            android:layout_width="@dimen/reset_singer_right_width"
+            android:layout_height="@dimen/reset_singer_right_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/right_icon" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/thirty_minute_txt"
+            android:text="@string/thirty_minute_notification"
+            android:textColor="@color/black"
+            android:textSize="@dimen/reset_singer_small_txt_size" />
+
+        <View
+            android:layout_marginBottom="10px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/fav_music_bg"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/sixth_minute"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/reset_item_height"
+        android:layout_below="@id/thirty_minute"
+        android:background="@color/color_reset_singer_normal"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/reset_singer_btn_margin_bottom"
+        android:paddingRight="@dimen/reset_singer_btn_margin_bottom">
+
+        <TextView
+            android:id="@+id/sixth_minute_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sixty_minute"
+            android:textColor="@color/black"
+            android:textSize="@dimen/reset_singer_big_txt_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sixth_minute_txt"
+            android:text="@string/sixty_minute_notification"
+            android:textColor="@color/black"
+            android:textSize="@dimen/reset_singer_small_txt_size" />
+
+        <ImageView
+            android:id="@+id/sixty_icon"
+            android:layout_width="@dimen/reset_singer_right_width"
+            android:layout_height="@dimen/reset_singer_right_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/right_icon"
+            android:visibility="invisible" />
+        <View
+            android:layout_marginBottom="10px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/fav_music_bg"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/one_hundred_minute"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/reset_item_height"
+        android:layout_below="@id/sixth_minute"
+        android:background="@color/color_reset_singer_normal"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/reset_singer_btn_margin_bottom"
+        android:paddingRight="@dimen/reset_singer_btn_margin_bottom">
+
+        <TextView
+            android:id="@+id/one_hundred_minute_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/one_hundred_minute"
+            android:textColor="@color/black"
+            android:textSize="@dimen/reset_singer_big_txt_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/one_hundred_minute_txt"
+            android:text="@string/one_hundred_minute_notification"
+            android:textColor="@color/black"
+            android:textSize="@dimen/reset_singer_small_txt_size" />
+
+        <ImageView
+            android:id="@+id/one_hundred_icon"
+            android:layout_width="@dimen/reset_singer_right_width"
+            android:layout_height="@dimen/reset_singer_right_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/right_icon"
+            android:visibility="invisible" />
+        <View
+            android:layout_marginBottom="10px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/fav_music_bg"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/two_hundred_minute"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/reset_item_height"
+        android:layout_below="@id/one_hundred_minute"
+        android:background="@color/color_reset_singer_normal"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/reset_singer_btn_margin_bottom"
+        android:paddingRight="@dimen/reset_singer_btn_margin_bottom">
+
+        <TextView
+            android:id="@+id/two_hundred_minute_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/two_hundred_minute"
+            android:textColor="@color/black"
+            android:textSize="@dimen/reset_singer_big_txt_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/two_hundred_minute_txt"
+            android:text="@string/two_hundred_minute_notification"
+            android:textColor="@color/black"
+            android:textSize="@dimen/reset_singer_small_txt_size" />
+
+        <ImageView
+            android:id="@+id/two_hundred_icon"
+            android:layout_width="@dimen/reset_singer_right_width"
+            android:layout_height="@dimen/reset_singer_right_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/right_icon"
+            android:visibility="invisible" />
+        <View
+            android:layout_marginBottom="10px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/fav_music_bg"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/change_singer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/reset_item_height"
+        android:layout_below="@id/two_hundred_minute"
+        android:layout_marginTop="@dimen/singer_choose_x_margin_top"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/reset_singer_btn_margin_bottom"
+        android:paddingRight="@dimen/reset_singer_btn_margin_bottom">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change_singer"
+            android:textColor="@color/black"
+            android:textSize="@dimen/reset_singer_big_txt_size" />
+
+        <ImageView
+            android:layout_width="@dimen/arrow_right_width"
+            android:layout_height="@dimen/arrow_right_height"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/arrow_right" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/server_support_from_phl"
+        android:textSize="@dimen/reset_singer_small_txt_size"
+        android:textColor="@color/color_reset_singer_dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>

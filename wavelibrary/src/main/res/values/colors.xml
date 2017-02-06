@@ -12,9 +12,16 @@
     <color name="background_material_light_2">#ed02fafa</color>
     <color name="small_font">#FF757575</color>
     <color name="text_color">#FF000000</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
 
-
-
+    <color name="color_reset_singer_normal">#FFFFFF</color>
+    <color name="color_reset_singer_dark">#8D8F93</color>
+    <color name="color_reset_singer_btn">#FF4444</color>
+    <color name="color_reset_singer_line">#3D414C</color>
+    <color name="fav_music_bg">#F2F2F2</color>
+    <color name="fav_music_title">#FFFFFF</color>
+    <color name="choose_save_music_theme">#13CB99</color>
 
 
     <!-- theme color -->
@@ -22,7 +29,7 @@
     <color name="pink_dark">#b85671</color>
     <color name="pink_trans">#99f0486c</color>
 
-    <color name="blue">#2196F3</color>
+    <color name="blue">#21c4e4</color>
     <color name="blue_dark">#1565C0</color>
     <color name="blue_trans">#B41A78C3</color>
 

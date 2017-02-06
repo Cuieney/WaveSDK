@@ -6,6 +6,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 
 import com.feetsdk.android.FeetSdk;
 import com.feetsdk.android.R;
+import com.feetsdk.android.common.utils.Logger;
 import com.feetsdk.android.feetsdk.Music;
 import com.feetsdk.android.feetsdk.annotation.EventType;
 import com.feetsdk.android.feetsdk.download.DownloadControler;
@@ -33,6 +35,7 @@ import com.feetsdk.android.feetsdk.musicplayer.MusicController;
 import com.feetsdk.android.feetsdk.musicplayer.OnMediaControllerListener;
 import com.feetsdk.android.feetsdk.musicplayer.OnMediaStateUpdatedListener;
 import com.feetsdk.android.feetsdk.musicplayer.OnMusicChangeListener;
+import com.feetsdk.android.feetsdk.stepcount.IStepChange;
 
 /**
  * Created by cuieney on 17/1/10.
@@ -84,6 +87,8 @@ public class FWProxy implements View.OnClickListener {
                 mPlayerNext.setVisibility(View.VISIBLE);
                 mPlayerName.setVisibility(View.GONE);
                 mPlayerPause.setVisibility(View.VISIBLE);
+            }else if(msg.what == 3){
+                mPlayerBpm.setText(((String) msg.obj));
             }
 
         }
@@ -175,6 +180,24 @@ public class FWProxy implements View.OnClickListener {
                 }
             }
         });
+
+        mMusicCtl.registerStepChange(new IStepChange() {
+            @Override
+            public void getStepCount(double stepcount) {
+
+            }
+
+            @Override
+            public void getCurrentBpm(int bpm) {
+                if (isLocked) {
+                    mMusicCtl.setTempo(bpm);
+                    Message message = Message.obtain();
+                    message.obj = bpm+"BPM";
+                    message.what = 3;
+                    handler.sendMessage(message);
+                }
+            }
+        });
     }
 
     private void updateMusicDownload() {
@@ -203,6 +226,7 @@ public class FWProxy implements View.OnClickListener {
         mPlayerAdd.setOnClickListener(this);
         mDownloadClose.setOnClickListener(this);
         mPlayerClose.setOnClickListener(this);
+        mDownloadSetting.setOnClickListener(this);
         mDownloadSetting.setOnClickListener(this);
 
 
@@ -252,6 +276,12 @@ public class FWProxy implements View.OnClickListener {
         }
         if (i == R.id.download_close) {
             mFloatWindow.turnMini();
+        }
+
+        if (i == R.id.menu){
+            Intent intent = new Intent(context, ConfigActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         }
     }
 

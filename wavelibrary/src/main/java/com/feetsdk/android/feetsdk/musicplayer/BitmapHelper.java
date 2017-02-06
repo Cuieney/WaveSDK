@@ -25,6 +25,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class BitmapHelper {
 
@@ -65,12 +67,11 @@ public class BitmapHelper {
     public static Bitmap fetchAndRescaleBitmap(String uri, int width, int height)
             throws IOException {
 
+        URL url = new URL(uri);
         BufferedInputStream is = null;
         try {
-            Logger.e(uri+"");
-            is = new BufferedInputStream(new FileInputStream(new File(uri)));
-//            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-//            is = new BufferedInputStream(urlConnection.getInputStream());
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            is = new BufferedInputStream(urlConnection.getInputStream());
             is.mark(MAX_READ_LIMIT_PER_IMG);
             int scaleFactor = findScaleFactor(width, height, is);
             is.reset();
@@ -80,5 +81,6 @@ public class BitmapHelper {
                 is.close();
             }
         }
+
     }
 }

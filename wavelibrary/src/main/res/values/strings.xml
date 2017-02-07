@@ -16,5 +16,14 @@
     <string name="complete_txt">完成</string>
     <string name="change_music_library_size">更改曲库大小</string>
     <string name="change_singer">更改音乐口味</string>
+
+    <string name="choose_singer_title_one">为了确定您的音乐口味</string>
+    <string name="choose_singer_title_two">请选择三位你喜欢的艺术家</string>
+    <string name="search_singer">搜索歌手</string>
+    <string name="open_run_radio">开启运动电台</string>
+    <string name="search_singer_name">搜索您喜欢的艺术家</string>
+    <string name="choose_singer_title">音乐口味设置</string>
+    <string name="cancel">取消</string>
+
     <string name="server_support_from_phl">- 服 务 由 跑 嗨 乐 提 供 -</string>
 </resources>

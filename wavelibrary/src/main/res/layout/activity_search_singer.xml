@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_choose_singer_bg">
+
+    <EditText
+        android:id="@+id/search_edit"
+        android:hint="@string/search_singer_name"
+        android:gravity="center"
+        android:textColorHint="@color/color_search_singer_edit_txt"
+        android:textColor="@color/color_search_singer_edit_txt"
+        android:textSize="@dimen/singer_search_singer_edit_txt_size"
+        android:layout_marginTop="@dimen/singer_search_singer_edit_margin_top"
+        android:layout_marginLeft="@dimen/singer_search_singer_edit_margin_left"
+        android:background="@mipmap/search_singer_icon"
+        android:layout_width="@dimen/singer_search_singer_edit_width"
+        android:layout_height="@dimen/singer_search_singer_edit_height" />
+
+    <TextView
+        android:id="@+id/cancel_txt"
+        android:text="@string/cancel"
+        android:layout_marginRight="@dimen/singer_search_singer_cancel_margin_right"
+        android:layout_marginTop="@dimen/singer_search_singer_cancel_margin_top"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/color_search_singer_edit_txt"
+        android:textSize="@dimen/singer_search_singer_edit_txt_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/singer_vpg"
+        android:layout_width="@dimen/singer_vpg_width"
+        android:layout_height="@dimen/singer_vpg_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/singer_vpg_margin_bottom"
+        android:layout_marginLeft="@dimen/singer_vpg_margin_left_right"
+        android:layout_marginRight="@dimen/singer_vpg_margin_left_right"
+        android:layout_marginTop="@dimen/singer_vpg_margin_top" />
+
+    <LinearLayout
+        android:id="@+id/points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_vpg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/singer_points_bottom"
+        android:orientation="horizontal" />
+
+</RelativeLayout>

@@ -153,11 +153,11 @@ public class FWProxy implements View.OnClickListener {
                 handler.sendMessage(message);
                 if (mCurrentMsc == null) {
                     mCurrentMsc = info;
-//                    updateNextStatue();
+//                    updateNextState();
                 }
                 if (!mCurrentMsc.getSongId().equals(info.getSongId())) {
                     mCurrentMsc = info;
-                    updateNextStatue();
+                    updateNextState();
                 }
 
             }
@@ -174,9 +174,9 @@ public class FWProxy implements View.OnClickListener {
             @Override
             public void OnMediaStateUpdated(PlaybackStateCompat playbackStateCompat) {
                 if (playbackStateCompat.getState() == PlaybackStateCompat.STATE_PLAYING) {
-                    updatePlayStatue();
+                    updatePlayState();
                 } else if (playbackStateCompat.getState() == PlaybackStateCompat.STATE_PAUSED) {
-                    updatePauseStatue();
+                    updatePauseState();
                 }
             }
         });
@@ -243,12 +243,12 @@ public class FWProxy implements View.OnClickListener {
 
         if (i == R.id.pause) {
             mMusicCtl.onPause();
-//            updatePauseStatue();
+//            updatePauseState();
         }
 
         if (i == R.id.play) {
             mMusicCtl.onContinue();
-//            updatePlayStatue();
+//            updatePlayState();
         }
 
         if (i == R.id.stop) {
@@ -260,15 +260,15 @@ public class FWProxy implements View.OnClickListener {
         }
 
         if (i == R.id.lock) {
-            updateLockedStatue();
+            updateLockedState();
         }
 
         if (i == R.id.sub) {
-            updateBpmStatue(false);
+            updateBpmState(false);
         }
 
         if (i == R.id.add) {
-            updateBpmStatue(true);
+            updateBpmState(true);
         }
 
         if (i == R.id.close) {
@@ -286,7 +286,7 @@ public class FWProxy implements View.OnClickListener {
     }
 
 
-    private void updateNextStatue() {
+    private void updateNextState() {
         mPlayerNext.setVisibility(View.GONE);
         mPlayerName.setVisibility(View.VISIBLE);
         mPlayerPause.setVisibility(View.GONE);
@@ -302,7 +302,7 @@ public class FWProxy implements View.OnClickListener {
     }
 
 
-    private void updateBpmStatue(boolean isAdd) {
+    private void updateBpmState(boolean isAdd) {
         int value = Integer.parseInt(mPlayerBpm.getText().toString().substring(0, 3));
         if (isAdd) {
             value += 5;
@@ -320,7 +320,7 @@ public class FWProxy implements View.OnClickListener {
         }
     }
 
-    private void updatePauseStatue() {
+    private void updatePauseState() {
 
         mPlayerStop.setVisibility(View.VISIBLE);
         mPlayerLock.setVisibility(View.GONE);
@@ -330,7 +330,7 @@ public class FWProxy implements View.OnClickListener {
         mPlayerPause.setVisibility(View.GONE);
     }
 
-    private void updatePlayStatue() {
+    private void updatePlayState() {
 
         mPlayerStop.setVisibility(View.GONE);
         mPlayerLock.setVisibility(View.VISIBLE);
@@ -452,7 +452,7 @@ public class FWProxy implements View.OnClickListener {
         }
     }
 
-    private void updateLockedStatue() {
+    private void updateLockedState() {
         if (isLocked) {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

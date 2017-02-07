@@ -27,10 +27,20 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".feetsdk.ui.ConfigActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        <activity
+            android:name=".feetsdk.ui.ConfigActivity"
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".feetsdk.ui.ChooseSingerActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+            />
+        <activity android:name=".feetsdk.ui.SearchSingerActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
             />
     </application>
 

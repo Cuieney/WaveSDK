@@ -1,5 +1,6 @@
 package com.feetsdk.android.feetsdk.ui;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -75,7 +76,7 @@ public class ConfigActivity extends AutoLayoutActivity implements View.OnClickLi
             resetMinute(240);
         }
         if(id == R.id.change_singer){
-
+            startActivity(new Intent(this,ChooseSingerActivity.class));
         }
     }
 

@@ -431,8 +431,6 @@ public class FeetPlayer implements ISuperPowerPlayer {
                 jniBridge.setVolume(volume);
             }
         });
-
-
     }
 
     public interface OnCompletionCallBack {

@@ -14,6 +14,7 @@
     <color name="text_color">#FF000000</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="white_dark">#F2F2F2</color>
 
     <color name="color_reset_singer_normal">#FFFFFF</color>
     <color name="color_reset_singer_dark">#8D8F93</color>
@@ -24,8 +25,19 @@
     <color name="choose_save_music_theme">#13CB99</color>
 
 
+    <color name="color_point_dark">#80000000</color>
+    <color name="color_point_light">#FFFFFF</color>
+
+
+    <color name="color_choose_singer_bg">#1D2028</color>
+    <color name="color_choose_singer_title">#FFFFFF</color>
+    <color name="color_choose_singer_name">#999999</color>
+    <color name="color_choose_singer_open_run">#FFFFFF</color>
+    <color name="color_choose_singer_head_bg">#ADABAB</color>
+    <color name="color_search_singer_edit_txt">#FFFFFF</color>
+
     <!-- theme color -->
-    <color name="pink">#fb7299</color>
+    <color name="pink">#fe7072</color>
     <color name="pink_dark">#b85671</color>
     <color name="pink_trans">#99f0486c</color>
 

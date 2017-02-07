@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_dark">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/blue" />
+
+    <LinearLayout
+        android:id="@+id/cancel"
+        android:layout_width="@dimen/back_icon_width"
+        android:layout_height="@dimen/back_icon_height"
+        android:layout_marginLeft="@dimen/singer_choose_x_margin_left"
+        android:layout_marginTop="@dimen/singer_choose_x_margin_top"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_txt"
+            android:textColor="@color/color_reset_singer_normal" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/fav_music_title_margin_top"
+        android:text="@string/choose_singer_title"
+        android:textColor="@color/fav_music_title"
+        android:textSize="@dimen/fav_music_title_txt_size" />
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/singer_title_margin_top"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/singer_title_one_margin_bottom"
+            android:text="@string/choose_singer_title_one"
+            android:textColor="@color/black"
+            android:textSize="@dimen/singer_title" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_singer_title_two"
+            android:textColor="@color/black"
+            android:textSize="@dimen/singer_title" />
+    </LinearLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/singer_vpg"
+        android:layout_width="@dimen/singer_vpg_width"
+        android:layout_height="@dimen/singer_vpg_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/singer_vpg_margin_bottom"
+        android:layout_marginLeft="@dimen/singer_vpg_margin_left_right"
+        android:layout_marginRight="@dimen/singer_vpg_margin_left_right"
+        android:layout_marginTop="@dimen/singer_vpg_margin_top" />
+
+    <LinearLayout
+        android:id="@+id/points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/singer_vpg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/singer_points_bottom"
+        android:orientation="horizontal" />
+
+    <RelativeLayout
+        android:id="@+id/search_container"
+        android:layout_width="149px"
+        android:layout_height="35px"
+        android:layout_below="@id/points"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/singer_search_margin_bottom"
+        android:clickable="true"
+        android:background="@drawable/search_singer_sp"
+        android:orientation="horizontal">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_singer"
+            android:layout_centerInParent="true"
+            android:textColor="@color/color_reset_singer_dark"
+            android:textSize="@dimen/singer_search_singer" />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_width="@dimen/singer_search_singer"
+            android:layout_height="@dimen/singer_search_singer"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/singer_search_icon_margin_right"
+            android:src="@mipmap/arrow_right" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_container"
+        android:layout_centerHorizontal="true">
+
+
+        <ImageView
+            android:src="@drawable/singer_head_bg_sp"
+            android:id="@+id/singer_one"
+            android:layout_width="@dimen/singer_head_width"
+            android:layout_height="@dimen/singer_head_height"
+            android:layout_marginLeft="@dimen/singer_choose_singer_margin_left"
+            android:layout_marginRight="@dimen/singer_choose_singer_margin_right"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_below="@id/singer_one"
+            android:layout_alignRight="@id/singer_one"
+            android:layout_alignLeft="@id/singer_one"
+            android:gravity="center"
+            android:id="@+id/singer_name_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/singer_singer_name_margin_top"
+            android:textColor="@color/black"
+            android:textSize="@dimen/singer_name" />
+
+        <ImageView
+
+            android:id="@+id/delete_singer_one"
+            android:layout_width="@dimen/singer_x_width"
+            android:layout_height="@dimen/singer_x_height"
+            android:layout_alignEnd="@+id/singer_one"
+            android:src="@mipmap/search_delete_icon"
+            android:visibility="invisible" />
+
+
+        <ImageView
+            android:src="@drawable/singer_head_bg_sp"
+            android:id="@+id/singer_two"
+            android:layout_width="@dimen/singer_head_width"
+            android:layout_height="@dimen/singer_head_height"
+            android:layout_marginRight="@dimen/singer_choose_singer_margin_right"
+            android:layout_toRightOf="@id/singer_one"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_below="@id/singer_two"
+            android:layout_alignRight="@id/singer_two"
+            android:layout_alignLeft="@id/singer_two"
+            android:gravity="center"
+            android:id="@+id/singer_name_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/singer_singer_name_margin_top"
+            android:textColor="@color/black"
+            android:textSize="@dimen/singer_name" />
+
+
+        <ImageView
+            android:layout_marginLeft="@dimen/singer_singer_x_margin_left"
+            android:layout_marginBottom="@dimen/singer_singer_x_margin_bottom"
+            android:id="@+id/delete_singer_two"
+            android:layout_width="@dimen/singer_x_width"
+            android:layout_height="@dimen/singer_x_height"
+            android:layout_alignEnd="@+id/singer_two"
+            android:src="@mipmap/search_delete_icon"
+            android:visibility="invisible" />
+
+
+        <ImageView
+            android:src="@drawable/singer_head_bg_sp"
+            android:id="@+id/singer_three"
+            android:layout_width="@dimen/singer_head_width"
+            android:layout_height="@dimen/singer_head_height"
+            android:layout_marginRight="@dimen/singer_choose_singer_margin_left"
+            android:layout_toRightOf="@id/singer_two"
+            android:scaleType="centerCrop" />
+        <TextView
+
+            android:layout_below="@id/singer_three"
+            android:layout_alignRight="@id/singer_three"
+            android:layout_alignLeft="@id/singer_three"
+            android:gravity="center"
+            android:id="@+id/singer_name_three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/singer_singer_name_margin_top"
+            android:textColor="@color/black"
+            android:textSize="@dimen/singer_name" />
+
+
+        <ImageView
+            android:layout_marginLeft="@dimen/singer_singer_x_margin_left"
+            android:layout_marginBottom="@dimen/singer_singer_x_margin_bottom"
+            android:id="@+id/delete_singer_three"
+            android:layout_width="@dimen/singer_x_width"
+            android:layout_height="@dimen/singer_x_height"
+            android:layout_alignEnd="@+id/singer_three"
+            android:src="@mipmap/search_delete_icon"
+            android:visibility="invisible"
+            />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/open_run_radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/singer_start_open_margin_bottom"
+        android:background="@drawable/open_run_radio_sp"
+        android:paddingBottom="@dimen/singer_open_run_padding_top_bottom"
+        android:paddingLeft="@dimen/singer_open_run_padding_left_right"
+        android:paddingRight="@dimen/singer_open_run_padding_left_right"
+        android:paddingTop="@dimen/singer_open_run_padding_top_bottom"
+        android:text="@string/open_run_radio"
+        android:textColor="@color/white"
+        android:textSize="@dimen/singer_start_open" />
+</RelativeLayout>

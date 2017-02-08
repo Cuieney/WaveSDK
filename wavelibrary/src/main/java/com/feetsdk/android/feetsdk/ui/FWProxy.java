@@ -17,14 +17,17 @@ import android.support.v4.media.session.PlaybackStateCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.feetsdk.android.FeetSdk;
 import com.feetsdk.android.R;
-import com.feetsdk.android.common.utils.Logger;
 import com.feetsdk.android.feetsdk.Music;
 import com.feetsdk.android.feetsdk.annotation.EventType;
 import com.feetsdk.android.feetsdk.download.DownloadControler;
@@ -279,6 +282,7 @@ public class FWProxy implements View.OnClickListener {
         }
 
         if (i == R.id.menu){
+            mFloatWindow.turnMini();
             Intent intent = new Intent(context, ConfigActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
@@ -345,6 +349,15 @@ public class FWProxy implements View.OnClickListener {
         mMusicCtl.onPlay();
         mMusicCtl.onCustomAction("updated_song", new Bundle());
         flipCard();
+
+        Animation operatingAnim = AnimationUtils.loadAnimation(context, R.anim.rotate);
+        LinearInterpolator lin = new LinearInterpolator();
+        operatingAnim.setInterpolator(lin);
+        mCircularProgress.startAnimation(operatingAnim);
+
+//        mCircularProgress.setImageResource(R.drawable.play_animation);
+//        AnimationDrawable animationDrawable = (AnimationDrawable) mCircularProgress.getDrawable();
+//        animationDrawable.start();
     }
 
     private void showDownload() {
@@ -353,6 +366,8 @@ public class FWProxy implements View.OnClickListener {
                 (mediaSessionControls.getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING)) {
             mMusicCtl.onPause();
         }
+        mCircularProgress.clearAnimation();
+
         updateMusicDownload();
     }
 
@@ -454,7 +469,7 @@ public class FWProxy implements View.OnClickListener {
 
     private void updateLockedState() {
         if (isLocked) {
-
+            mPlayerLock.setImageResource(R.drawable.unlock_btn);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 turnOnAnimator(lockContainer);
             } else {
@@ -463,7 +478,7 @@ public class FWProxy implements View.OnClickListener {
 
             }
         } else {
-
+            mPlayerLock.setImageResource(R.drawable.lock_btn);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 turnOffAnimator(lockContainer);
             } else {

@@ -4,12 +4,23 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.feetsdk.android.common.exception.HttpException;
+import com.feetsdk.android.common.utils.Logger;
 import com.feetsdk.android.feetsdk.annotation.EventType;
 import com.feetsdk.android.feetsdk.annotation.RequestMethod;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.X509Certificate;
 import java.util.List;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import okhttp3.Cache;
 import okhttp3.Call;
@@ -49,6 +60,7 @@ public class NetWork {
     }
 
     private NetWork(Builder builder) {
+
         cache = builder.cache;
         interceptor = builder.interceptor;
         cookieJar = builder.cookieJar;
@@ -133,6 +145,7 @@ public class NetWork {
         client.newCall(provideRequest()).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
+                Logger.e(call.toString()+"  ");
                 HttpException httpException = new HttpException(call.toString(), e);
                 callBack.failed(httpException);
             }
@@ -160,11 +173,76 @@ public class NetWork {
 
 
     private OkHttpClient provideClient(Cache cache, InterceptorFactory interceptor, CookieJar cookiesManager) {
+        X509TrustManager xtm = new X509TrustManager() {
+            @Override
+            public void checkClientTrusted(X509Certificate[] chain, String authType) {
+            }
+
+            @Override
+            public void checkServerTrusted(X509Certificate[] chain, String authType) {
+            }
+
+            @Override
+            public X509Certificate[] getAcceptedIssuers() {
+                X509Certificate[] x509Certificates = new X509Certificate[0];
+                return x509Certificates;
+            }
+        };
+
+        SSLContext sslContext = null;
+        try {
+            sslContext = SSLContext.getInstance("SSL");
+
+            sslContext.init(null, new TrustManager[]{xtm}, new SecureRandom());
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyManagementException e) {
+            e.printStackTrace();
+        }
+        HostnameVerifier DO_NOT_VERIFY = new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        };
+
+
+
+
         return new OkHttpClient.Builder()
                 .addInterceptor(interceptor.ADD_HEAD_INTERCEPTOR)
                 .addInterceptor(interceptor.REWRITE_RESPONSE_INTERCEPTOR)
+                .sslSocketFactory(sslContext.getSocketFactory())
+                .hostnameVerifier(DO_NOT_VERIFY)
                 .cache(cache)
                 .build();
     }
+
+//    private SSLSocketFactory getCertificates() {
+//        try {
+//
+////            InputStream inputStream = AppConfig.getApp().getAssets().open("https.cer");
+//            CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
+//
+//            KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+//            keyStore.load(null);
+//
+//            int index = 0;
+//            String certificateAlias = Integer.toString(index++);
+//            keyStore.setCertificateEntry(certificateAlias, certificateFactory.generateCertificate(null));
+//
+//            SSLContext tls = SSLContext.getInstance("TLS");
+//            TrustManagerFactory trustManagerFactory =
+//                    TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
+//            trustManagerFactory.init(keyStore);
+//            tls.init(null, trustManagerFactory.getTrustManagers(), new SecureRandom());
+//            return tls.getSocketFactory();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+
 
 }

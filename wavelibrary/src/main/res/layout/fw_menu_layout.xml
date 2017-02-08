@@ -9,7 +9,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:src="@mipmap/logo"
+        android:src="@drawable/msc_icon"
         app:border_color="#fff"
         app:border_width="1dp"
         app:centercircle_diammterer="1"

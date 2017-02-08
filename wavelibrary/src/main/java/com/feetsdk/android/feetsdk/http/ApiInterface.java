@@ -8,7 +8,7 @@ import org.json.JSONObject;
  * Created by cuieney on 16/11/10.
  */
 interface ApiInterface {
-    String BASE_URL = "http://test.paohaile.com:4000";
+    String BASE_URL = "https://wave.paohaile.com";
     String GET_ARTISTS = BASE_URL+"/v1/radio/artists?page-size=30&page-no=1";
     String SEARCH_ARTISTS = BASE_URL+"/v1/radio/artists?page-size=30&page-no=1&q=";
     String GET_MUSIC = BASE_URL+"/v1/radio?page-size=";

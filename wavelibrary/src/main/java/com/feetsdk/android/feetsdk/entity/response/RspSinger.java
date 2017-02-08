@@ -1,10 +1,12 @@
 package com.feetsdk.android.feetsdk.entity.response;
 
+import java.io.Serializable;
+
 /**
  * Created by paohaile on 17/2/7.
  */
 
-public class RspSinger {
+public class RspSinger implements Serializable {
 
     /**
      * name : 降央卓玛

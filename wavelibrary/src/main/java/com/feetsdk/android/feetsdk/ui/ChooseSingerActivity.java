@@ -2,10 +2,8 @@ package com.feetsdk.android.feetsdk.ui;
 
 import android.content.Intent;
 import android.os.Build;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.GridView;
@@ -322,10 +320,21 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
             deleteSingerData(3);
 
         } else if (i == R.id.search_container) {
-            startActivity(new Intent(this,SearchSingerActivity.class));
+            startActivityForResult(new Intent(this, SearchSingerActivity.class), 1);
         } else if(i == R.id.cancel){
             finish();
         }
         chooseThree();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            Bundle extras = data.getExtras();
+            RspSinger artist = (RspSinger) extras.getSerializable("artist");
+            judgeArtist(artist);
+        }
+
     }
 }

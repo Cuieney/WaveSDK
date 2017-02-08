@@ -2,31 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_choose_singer_bg">
+    android:background="@color/white_dark">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/blue" />
+
+    <LinearLayout
+        android:id="@+id/cancel_txt"
+        android:layout_width="@dimen/back_icon_width"
+        android:layout_height="@dimen/back_icon_height"
+        android:layout_marginLeft="@dimen/singer_choose_x_margin_left"
+        android:layout_marginTop="@dimen/singer_choose_x_margin_top"
+        android:clickable="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/complete_txt"
+            android:textColor="@color/color_reset_singer_normal" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/fav_music_title_margin_top"
+        android:text="@string/choose_singer_title"
+        android:textColor="@color/fav_music_title"
+        android:textSize="@dimen/fav_music_title_txt_size" />
 
     <EditText
         android:id="@+id/search_edit"
         android:hint="@string/search_singer_name"
         android:gravity="center"
-        android:textColorHint="@color/color_search_singer_edit_txt"
-        android:textColor="@color/color_search_singer_edit_txt"
+        android:textColorHint="@color/white_dark"
+        android:textColor="@color/white_dark"
         android:textSize="@dimen/singer_search_singer_edit_txt_size"
         android:layout_marginTop="@dimen/singer_search_singer_edit_margin_top"
-        android:layout_marginLeft="@dimen/singer_search_singer_edit_margin_left"
-        android:background="@mipmap/search_singer_icon"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/input_txt"
         android:layout_width="@dimen/singer_search_singer_edit_width"
         android:layout_height="@dimen/singer_search_singer_edit_height" />
 
-    <TextView
-        android:id="@+id/cancel_txt"
-        android:text="@string/cancel"
-        android:layout_marginRight="@dimen/singer_search_singer_cancel_margin_right"
-        android:layout_marginTop="@dimen/singer_search_singer_cancel_margin_top"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/color_search_singer_edit_txt"
-        android:textSize="@dimen/singer_search_singer_edit_txt_size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/singer_vpg"

@@ -75,9 +75,11 @@
     <dimen name="singer_singer_x_margin_bottom">10px</dimen>
     <dimen name="singer_search_singer_edit_width">273px</dimen>
     <dimen name="singer_search_singer_edit_height">41px</dimen>
-    <dimen name="singer_search_singer_edit_margin_top">38px</dimen>
+    <dimen name="singer_search_singer_edit_margin_top">68px</dimen>
     <dimen name="singer_search_singer_edit_margin_left">31px</dimen>
     <dimen name="singer_search_singer_edit_txt_size">14sp</dimen>
-    <dimen name="singer_search_singer_cancel_margin_top">46px</dimen>
+    <dimen name="singer_search_singer_cancel_margin_top">76px</dimen>
     <dimen name="singer_search_singer_cancel_margin_right">14px</dimen>
+
+    <dimen name="search_singer_edit_margin_top">50px</dimen>
 </resources>

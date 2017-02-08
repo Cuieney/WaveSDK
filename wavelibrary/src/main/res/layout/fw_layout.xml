@@ -22,14 +22,14 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/lock" />
+                android:src="@drawable/lock_btn" />
 
             <ImageView
                 android:id="@+id/stop"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/stop"
+                android:src="@drawable/stop_btn"
                 android:visibility="gone" />
 
             <ImageView
@@ -38,7 +38,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/arrow" />
+                android:src="@drawable/arrow_bottom" />
 
             <ImageView
                 android:id="@+id/next"
@@ -56,7 +56,7 @@
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/next"
                 android:layout_toRightOf="@id/lock"
-                android:src="@mipmap/pause" />
+                android:src="@drawable/pause_btn" />
 
 
             <ImageView
@@ -66,7 +66,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
                 android:layout_toLeftOf="@+id/close"
-                android:src="@mipmap/play"
+                android:src="@drawable/play_btn"
                 android:visibility="gone" />
 
             <TextView
@@ -99,7 +99,7 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/sub" />
+                android:src="@drawable/sub_btn" />
 
             <TextView
                 android:id="@+id/bpm"
@@ -117,7 +117,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/add" />
+                android:src="@drawable/add_btn" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -143,14 +143,14 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/menu" />
+                android:src="@drawable/menu_icon" />
 
             <ImageView
                 android:id="@+id/download_play"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_centerInParent="true"
-                android:src="@mipmap/play" />
+                android:src="@drawable/play_btn" />
 
             <ImageView
                 android:id="@+id/download_close"
@@ -158,7 +158,7 @@
                 android:layout_height="35dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/arrow" />
+                android:src="@drawable/arrow_bottom" />
 
 
         </RelativeLayout>

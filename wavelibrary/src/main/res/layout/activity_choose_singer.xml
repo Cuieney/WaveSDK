@@ -106,7 +106,7 @@
             android:layout_height="@dimen/singer_search_singer"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/singer_search_icon_margin_right"
-            android:src="@mipmap/arrow_right" />
+            android:src="@drawable/arrow_right" />
 
     </RelativeLayout>
 

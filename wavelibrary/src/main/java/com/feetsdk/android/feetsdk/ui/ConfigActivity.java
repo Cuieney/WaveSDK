@@ -3,11 +3,14 @@ package com.feetsdk.android.feetsdk.ui;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.feetsdk.android.FeetSdk;
 import com.feetsdk.android.R;
+import com.feetsdk.android.common.utils.AppManager;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 public class ConfigActivity extends AutoLayoutActivity implements View.OnClickListener {
@@ -31,6 +34,7 @@ public class ConfigActivity extends AutoLayoutActivity implements View.OnClickLi
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         setContentView(R.layout.activity_config);
+        AppManager.getAppManager().addActivity(this);
         initView();
         initListener();
     }
@@ -111,5 +115,18 @@ public class ConfigActivity extends AutoLayoutActivity implements View.OnClickLi
                 FeetSdk.getInstance(this).setMusicLibrarySize(40);
                 break;
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        Intent intent1 = new Intent(FWProxy.UPDATE_DB);
+        sendBroadcast(intent1);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AppManager.getAppManager().finishAllActivity();
     }
 }

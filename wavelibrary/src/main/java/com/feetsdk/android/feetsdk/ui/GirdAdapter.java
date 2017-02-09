@@ -46,11 +46,11 @@ public class GirdAdapter extends BaseAdapter<RspSinger> {
 
     public static class MyHolder {
 
-        public final ImageView singerHead;
+        public final RoundImageView singerHead;
         public final TextView singerName;
 
         public MyHolder(View itemView) {
-            singerHead = ((ImageView) itemView.findViewById(R.id.singer));
+            singerHead = ((RoundImageView) itemView.findViewById(R.id.singer));
             singerName = ((TextView) itemView.findViewById(R.id.singer_name));
         }
     }

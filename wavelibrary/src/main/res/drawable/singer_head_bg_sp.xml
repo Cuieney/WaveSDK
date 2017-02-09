@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="134dp"
+    android:height="134dp"
+    android:viewportWidth="134"
+    android:viewportHeight="134">
 
-    <solid android:color="@color/color_choose_singer_head_bg"/>
-</shape>
+    <path
+        android:fillColor="#D8D8D8"
+        android:fillType="evenOdd"
+        android:strokeColor="#979797"
+        android:strokeWidth="1"
+        android:pathData="M 67 1 C 103.450793489 1 133 30.5492065112 133 67 C 133 103.450793489 103.450793489 133 67 133 C 30.5492065112 133 1 103.450793489 1 67 C 1 30.5492065112 30.5492065112 1 67 1 Z" />
+</vector>

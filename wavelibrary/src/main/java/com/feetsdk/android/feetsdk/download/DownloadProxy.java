@@ -1,12 +1,14 @@
 package com.feetsdk.android.feetsdk.download;
 
 import android.content.Context;
+import android.os.Looper;
 
 import com.feetsdk.android.FeetConfig;
 import com.feetsdk.android.common.exception.HttpException;
 import com.feetsdk.android.common.utils.LocalPathResolver;
 import com.feetsdk.android.common.utils.Logger;
 import com.feetsdk.android.common.utils.NetWorkUtil;
+import com.feetsdk.android.common.utils.ToastUtil;
 import com.feetsdk.android.feetsdk.annotation.EventType;
 import com.feetsdk.android.feetsdk.annotation.RequestStartDownload;
 import com.feetsdk.android.feetsdk.db.OrmHelper;
@@ -200,7 +202,10 @@ public class DownloadProxy implements IDownloadCallback {
 
                 @Override
                 public void failed(HttpException exception) {
-                    throw new IllegalArgumentException("http connected failed");
+                    Looper.prepare();
+                    ToastUtil.showToast(contextWeakReference.get(),"网络错误");
+                    Looper.loop();
+//                    throw new IllegalArgumentException("http connected failed");
                 }
             });
 
@@ -216,7 +221,10 @@ public class DownloadProxy implements IDownloadCallback {
 
                 @Override
                 public void failed(HttpException exception) {
-                    throw new IllegalArgumentException("http connected failed");
+                    Looper.prepare();
+                    ToastUtil.showToast(contextWeakReference.get(),"网络错误");
+                    Looper.loop();
+//                    throw new IllegalArgumentException("http connected failed");
                 }
             });
         }

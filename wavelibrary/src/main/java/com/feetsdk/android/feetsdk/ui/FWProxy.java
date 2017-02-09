@@ -5,8 +5,10 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.annotation.TargetApi;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,6 +30,7 @@ import android.widget.TextView;
 
 import com.feetsdk.android.FeetSdk;
 import com.feetsdk.android.R;
+import com.feetsdk.android.common.utils.ToastUtil;
 import com.feetsdk.android.feetsdk.Music;
 import com.feetsdk.android.feetsdk.annotation.EventType;
 import com.feetsdk.android.feetsdk.download.DownloadControler;
@@ -35,6 +38,7 @@ import com.feetsdk.android.feetsdk.download.IUpdateProgressCallBack;
 import com.feetsdk.android.feetsdk.entity.DownloadProgress;
 import com.feetsdk.android.feetsdk.entity.UpdateProgress;
 import com.feetsdk.android.feetsdk.musicplayer.MusicController;
+import com.feetsdk.android.feetsdk.musicplayer.MusicProxy;
 import com.feetsdk.android.feetsdk.musicplayer.OnMediaControllerListener;
 import com.feetsdk.android.feetsdk.musicplayer.OnMediaStateUpdatedListener;
 import com.feetsdk.android.feetsdk.musicplayer.OnMusicChangeListener;
@@ -79,6 +83,9 @@ public class FWProxy implements View.OnClickListener {
 
     private Music mCurrentMsc;
 
+    private int totalMin;
+
+    public static final String UPDATE_DB = "UPDATE_DB";
 
     private Handler handler = new Handler() {
         @Override
@@ -97,6 +104,16 @@ public class FWProxy implements View.OnClickListener {
         }
     };
 
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(UPDATE_DB)) {
+                mFloatWindow.show();
+                mFloatWindow.turnMini();
+                updateMusicDownload();
+            }
+        }
+    };
 
     public FWProxy(Context context) {
         this.context = context.getApplicationContext();
@@ -115,6 +132,10 @@ public class FWProxy implements View.OnClickListener {
         mFloatWindow = new FloatWindow(context);
         mFloatWindow.setFloatView(mMenuLayout);
         mFloatWindow.setPlayerView(mPlayerLayout);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(UPDATE_DB);
+        context.registerReceiver(receiver, filter);
 
     }
 
@@ -208,9 +229,11 @@ public class FWProxy implements View.OnClickListener {
         int downloadProgress = currentProgress.getDownloadPorgress();
         mCircularProgress.setValue(downloadProgress);
         mLineProgress.setProgress(downloadProgress);
+        totalMin = currentProgress.getDownloadMinute();
         mDownloadCtl.startDownload(new IUpdateProgressCallBack() {
             @Override
             public void progress(UpdateProgress progress) {
+                totalMin = progress.getMinute();
                 mCircularProgress.setValue(progress.getPrecent());
                 mLineProgress.setProgress(progress.getPrecent());
             }
@@ -241,7 +264,9 @@ public class FWProxy implements View.OnClickListener {
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.download_play) {
-            showPlayer();
+            if (totalMin > 0) {
+                showPlayer();
+            }
         }
 
         if (i == R.id.pause) {
@@ -282,7 +307,7 @@ public class FWProxy implements View.OnClickListener {
         }
 
         if (i == R.id.menu){
-            mFloatWindow.turnMini();
+            mFloatWindow.dismiss();
             Intent intent = new Intent(context, ConfigActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);

@@ -5,7 +5,7 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <ImageView
+    <com.feetsdk.android.feetsdk.ui.RoundImageView
         android:id="@+id/singer"
         android:layout_width="@dimen/singer_big_head_width"
         android:layout_height="@dimen/singer_big_head_height"

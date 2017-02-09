@@ -3,6 +3,7 @@ package com.feetsdk.android.feetsdk.ui;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,14 +14,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.feetsdk.android.FeetSdk;
 import com.feetsdk.android.R;
 import com.feetsdk.android.common.exception.HttpException;
+import com.feetsdk.android.common.utils.AppManager;
 import com.feetsdk.android.common.utils.ImageLoader;
 import com.feetsdk.android.common.utils.ToastUtil;
 import com.feetsdk.android.feetsdk.entity.response.RspSinger;
 import com.feetsdk.android.feetsdk.http.HttpControler;
 import com.feetsdk.android.feetsdk.http.HttpResponse;
 import com.feetsdk.android.feetsdk.http.IHttpRspCallBack;
+import com.feetsdk.android.feetsdk.music.MusicHelper;
+import com.feetsdk.android.feetsdk.musicplayer.MusicProxy;
 import com.zhy.autolayout.AutoLayoutActivity;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -39,11 +44,11 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
     private ViewPager vpg;
     private LinearLayout points;
     private RelativeLayout searchContainer;
-    private ImageView singerOne;
+    private RoundImageView singerOne;
     private ImageView deleteSingerOne;
-    private ImageView singerTwo;
+    private RoundImageView singerTwo;
     private ImageView deleteSingerTwo;
-    private ImageView singerThree;
+    private RoundImageView singerThree;
     private ImageView deleteSingerThree;
     private TextView openRunRadio;
     private TextView singerNameOne;
@@ -64,7 +69,7 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         setContentView(R.layout.activity_choose_singer);
-
+        AppManager.getAppManager().addActivity(this);
         mData = new ArrayList<>();
         gridViewList = new ArrayList<>();
         chooseSingerList = new LinkedHashMap<>();
@@ -132,7 +137,9 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
 
             @Override
             public void failed(HttpException exception) {
+                Looper.prepare();
                 Toast.makeText(ChooseSingerActivity.this, "请求网络失败", Toast.LENGTH_SHORT).show();
+                Looper.loop();
             }
         });
 
@@ -191,22 +198,27 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
         vpg = ((ViewPager) findViewById(R.id.singer_vpg));
         searchContainer = (RelativeLayout) findViewById(R.id.search_container);
         points = (LinearLayout) findViewById(R.id.points);
-        singerOne = (ImageView) findViewById(R.id.singer_one);
+        singerOne = (RoundImageView) findViewById(R.id.singer_one);
         deleteSingerOne = (ImageView) findViewById(R.id.delete_singer_one);
-        singerTwo = (ImageView) findViewById(R.id.singer_two);
+        singerTwo = (RoundImageView) findViewById(R.id.singer_two);
         deleteSingerTwo = (ImageView) findViewById(R.id.delete_singer_two);
-        singerThree = (ImageView) findViewById(R.id.singer_three);
+        singerThree = (RoundImageView) findViewById(R.id.singer_three);
         deleteSingerThree = (ImageView) findViewById(R.id.delete_singer_three);
         openRunRadio = ((TextView) findViewById(R.id.open_run_radio));
         singerNameOne = (TextView) findViewById(R.id.singer_name_one);
         singerNameTwo = (TextView) findViewById(R.id.singer_name_two);
         singerNameThree = (TextView) findViewById(R.id.singer_name_three);
 
+        singerOne.setImageResource(R.drawable.singer_head_bg_sp);
+        singerTwo.setImageResource(R.drawable.singer_head_bg_sp);
+        singerThree.setImageResource(R.drawable.singer_head_bg_sp);
+
         deleteSingerOne.setOnClickListener(this);
         deleteSingerTwo.setOnClickListener(this);
         deleteSingerThree.setOnClickListener(this);
         searchContainer.setOnClickListener(this);
         cancel.setOnClickListener(this);
+        openRunRadio.setOnClickListener(this);
         chooseThree();
     }
 
@@ -230,6 +242,8 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
         }else{
             openRunRadio.setBackgroundResource(R.drawable.search_singer_sp);
         }
+
+
     }
 
     public void judgeArtist(Object t) {
@@ -322,6 +336,9 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
         } else if (i == R.id.search_container) {
             startActivityForResult(new Intent(this, SearchSingerActivity.class), 1);
         } else if(i == R.id.cancel){
+            finish();
+        } else if(i == R.id.open_run_radio){
+            FeetSdk.getMusicHelper(this).clearFeetSdk();
             finish();
         }
         chooseThree();

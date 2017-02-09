@@ -117,7 +117,7 @@
         android:layout_centerHorizontal="true">
 
 
-        <ImageView
+        <com.feetsdk.android.feetsdk.ui.RoundImageView
             android:src="@drawable/singer_head_bg_sp"
             android:id="@+id/singer_one"
             android:layout_width="@dimen/singer_head_width"
@@ -148,7 +148,7 @@
             android:visibility="invisible" />
 
 
-        <ImageView
+        <com.feetsdk.android.feetsdk.ui.RoundImageView
             android:src="@drawable/singer_head_bg_sp"
             android:id="@+id/singer_two"
             android:layout_width="@dimen/singer_head_width"
@@ -181,7 +181,7 @@
             android:visibility="invisible" />
 
 
-        <ImageView
+        <com.feetsdk.android.feetsdk.ui.RoundImageView
             android:src="@drawable/singer_head_bg_sp"
             android:id="@+id/singer_three"
             android:layout_width="@dimen/singer_head_width"

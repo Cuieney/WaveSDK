@@ -17,7 +17,7 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        FeetSdk.getInstance(this).init("e43765bd-4748-4c9f-ae5e-e665c9b021d2","demo");
+        FeetSdk.getInstance(this).init("99b36eda-3c91-4715-84ee-480c90ffe82f","demo");
         FeetSdk.getInstance(this).setMobileNetWorkVisiable(true);
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.

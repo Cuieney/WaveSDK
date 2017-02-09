@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import com.feetsdk.android.R;
 import com.feetsdk.android.common.exception.HttpException;
+import com.feetsdk.android.common.utils.AppManager;
 import com.feetsdk.android.feetsdk.entity.response.RspSinger;
 import com.feetsdk.android.feetsdk.http.HttpControler;
 import com.feetsdk.android.feetsdk.http.HttpResponse;
@@ -51,6 +52,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
         setContentView(R.layout.activity_search_singer);
+        AppManager.getAppManager().addActivity(this);
         gridViewList = new ArrayList<>();
         mData = new ArrayList<>();
         chooseSingerList = new LinkedHashMap<>();
@@ -167,13 +169,17 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
     private void loadView() {
         int change = 0;
         HashMap<Integer, List<RspSinger>> hashMap = new HashMap<>();
+        points.removeAllViews();
+        hashMap.clear();
         List<RspSinger> save = new ArrayList<>();
         for (int i = 0; i < mData.size(); i++) {
             int index = i / 6;
             if (change == index) {
                 save.add(mData.get(i));
-                if (i == mData.size() - 1)
+                if (i == mData.size() - 1){
                     hashMap.put(change, save);
+                    save = new ArrayList<>();
+                }
             } else {
                 hashMap.put(change, save);
                 change = index;
@@ -182,8 +188,11 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
             }
         }
 
-
+        gridViewList = new ArrayList<>();
         int numberPager = mData.size() / 6;
+        if (mData.size() == 1) {
+            numberPager = 1;
+        }
         for (int i = 0; i < numberPager; i++) {
             GridView gridView = new GridView(this);
             gridView.setNumColumns(3);
@@ -191,7 +200,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
             gridView.setVerticalSpacing(30);
             AutoUtils.auto(gridView);
             GirdAdapter adapter = new GirdAdapter(hashMap.get(i), this);
-            adapter.setOnItemClickListener(this);
+            adapter.setOnItemClickListener(SearchSingerActivity.this);
             gridView.setAdapter(adapter);
             gridViewList.add(gridView);
 

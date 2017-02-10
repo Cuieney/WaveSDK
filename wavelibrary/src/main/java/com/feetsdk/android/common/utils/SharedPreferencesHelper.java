@@ -1,5 +1,6 @@
 package com.feetsdk.android.common.utils;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -27,7 +28,7 @@ public class SharedPreferencesHelper {
         return instance;  
     }  
   
-    private SharedPreferencesHelper(Context context) {  
+    private SharedPreferencesHelper(Context context) {
         sp = context.getSharedPreferences(SHARED_PATH, Context.MODE_PRIVATE);  
         editor = sp.edit();  
     }  

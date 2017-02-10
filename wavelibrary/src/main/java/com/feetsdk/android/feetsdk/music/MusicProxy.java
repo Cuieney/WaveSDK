@@ -22,10 +22,8 @@ public class MusicProxy implements IMusicCallBack {
 
     private OrmHelper ormHelper;
     private HttpControler httpControler;
-    private WeakReference<Context> contextWeakReference;
 
     public MusicProxy(WeakReference<Context> weakReference) {
-        this.contextWeakReference = weakReference;
         ormHelper = new OrmHelper(weakReference.get());
         httpControler = new HttpControler(weakReference.get());
     }
@@ -157,18 +155,18 @@ public class MusicProxy implements IMusicCallBack {
     @Override
     public void clearFeetSdk(){
         ormHelper.clearData();
+        ormHelper.closeDb();
     }
 
 
     private Music song2Music(LocalSongs song) {
-        Music msc = new Music(song.getSongId(), song.getSongName(), song.getCoverImageUrl(),
+        return new Music(song.getSongId(), song.getSongName(), song.getCoverImageUrl(),
                 song.getProgress(), song.getPath(), song.getSingerName(), song.getTempo(),
                 song.getSize(), song.getCollection(), song.getListener(),song.getImgPath());
-        return msc;
     }
 
     private Music favMsc2Music(FavSong song) {
-        Music msc = new Music(
+        return new Music(
                 song.getSongId(),
                 song.getSongName(),
                 song.getCoverImageUrl(),
@@ -179,6 +177,5 @@ public class MusicProxy implements IMusicCallBack {
                 song.getSize(), true, true,
                 song.getImgPath()
         );
-        return msc;
     }
 }

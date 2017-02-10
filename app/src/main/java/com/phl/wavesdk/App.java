@@ -17,8 +17,8 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        FeetSdk.getInstance(this).init("99b36eda-3c91-4715-84ee-480c90ffe82f","demo");
-        FeetSdk.getInstance(this).setMobileNetWorkVisiable(true);
+        FeetSdk.getInstance().init(this,"99b36eda-3c91-4715-84ee-480c90ffe82f","demo");
+        FeetSdk.getInstance().setMobileNetWorkVisiable(this);
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
@@ -27,12 +27,10 @@ public class App extends Application {
         LeakCanary.install(this);
     }
 
-    private DaemonClient mDaemonClient;
-
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        mDaemonClient = new DaemonClient(createDaemonConfigurations());
+        DaemonClient mDaemonClient = new DaemonClient(createDaemonConfigurations());
         mDaemonClient.onAttachBaseContext(base);
     }
 

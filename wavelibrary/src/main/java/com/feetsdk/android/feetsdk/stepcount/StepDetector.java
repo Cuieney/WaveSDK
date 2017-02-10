@@ -33,11 +33,6 @@ public class StepDetector implements SensorEventListener {
     private List<Double> sensorList;
 
     /**
-     * 记录当前传感器变化的轴平方根
-     */
-    private double currentData;
-
-    /**
      * 计步器算法逻辑
      */
     public PedometerLogic logic;
@@ -69,7 +64,10 @@ public class StepDetector implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         float[] values = event.values;
-        currentData = values[0] * values[0] + values[1] * values[1] + values[2] * values[2];
+        /*
+      记录当前传感器变化的轴平方根
+     */
+        double currentData = values[0] * values[0] + values[1] * values[1] + values[2] * values[2];
         sensorList.add(currentData);
     }
 

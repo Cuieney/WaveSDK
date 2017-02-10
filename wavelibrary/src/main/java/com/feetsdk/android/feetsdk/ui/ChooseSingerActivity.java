@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.v4.view.ViewPager;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.GridView;
@@ -43,7 +44,6 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
 
     private ViewPager vpg;
     private LinearLayout points;
-    private RelativeLayout searchContainer;
     private RoundImageView singerOne;
     private ImageView deleteSingerOne;
     private RoundImageView singerTwo;
@@ -54,7 +54,6 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
     private TextView singerNameOne;
     private TextView singerNameTwo;
     private TextView singerNameThree;
-    private View cancel;
     private HttpControler httpControler;
 
     private List<RspSinger> mData;
@@ -147,7 +146,7 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
 
     private void loadView() {
         int change = 0;
-        HashMap<Integer, List<RspSinger>> hashMap = new HashMap<>();
+        SparseArray<List<RspSinger>> hashMap = new SparseArray<>();
         List<RspSinger> save = new ArrayList<>();
         for (int i = 0; i < mData.size(); i++) {
             int index = i / 6;
@@ -194,9 +193,9 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
     }
 
     private void initView() {
-        cancel = findViewById(R.id.cancel);
+        View cancel = findViewById(R.id.cancel);
         vpg = ((ViewPager) findViewById(R.id.singer_vpg));
-        searchContainer = (RelativeLayout) findViewById(R.id.search_container);
+        RelativeLayout searchContainer = (RelativeLayout) findViewById(R.id.search_container);
         points = (LinearLayout) findViewById(R.id.points);
         singerOne = (RoundImageView) findViewById(R.id.singer_one);
         deleteSingerOne = (ImageView) findViewById(R.id.delete_singer_one);
@@ -319,6 +318,12 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
             ToastUtil.showToast(this, "只能选择三个歌手！");
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        httpControler = null;
     }
 
     @Override

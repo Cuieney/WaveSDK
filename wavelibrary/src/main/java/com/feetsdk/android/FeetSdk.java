@@ -19,25 +19,26 @@ public class FeetSdk {
 
     private FeetConfig config;
 
-    private static FeetSdk instance;
 
-    private Context context;
-    public synchronized static FeetSdk getInstance(Context context) {
-        return instance == null?instance = new FeetSdk(context):instance;
+    private static class FeetSdkHolder {
+        private static final FeetSdk INSTANCE = new FeetSdk();
     }
 
+    public synchronized static FeetSdk getInstance() {
+        return FeetSdkHolder.INSTANCE;
+    }
 
-    private FeetSdk(Context context) {
+    private FeetSdk() {
+    }
+
+//    public void init(Context context){
+//        this.context = context;
+//        config.initDevInfo(context);
+//        init(context,config.getAppkey(), config.getAppChannel());
+//    }
+
+    public void init(Context context,String appKey, String appChannel){
         config = new FeetConfig(context);
-        this.context = context;
-    }
-
-    public void init(){
-        config.initDevInfo(context);
-        init(config.getAppkey(), config.getAppChannel());
-    }
-
-    public void init(String appKey, String appChannel){
         if (config.checkSelf(appKey,appChannel)) {
 //            return;
         }
@@ -49,11 +50,13 @@ public class FeetSdk {
         config.debug("使用开始");
     }
 
-    public void setMobileNetWorkVisiable(boolean netWorkVisiable){
-        config.setCellularData(netWorkVisiable);
+    public void setMobileNetWorkVisiable(Context context){
+        config.initDevInfo(context);
+        config.setCellularData(true);
     }
 
-    public void setMusicLibrarySize(int size){
+    public void setMusicLibrarySize(Context context,int size){
+        config.initDevInfo(context);
         config.setDefaultMusciSize(size);
     }
 
@@ -78,8 +81,8 @@ public class FeetSdk {
         return new MusicHelper(new WeakReference<>(context));
     }
 
-    public static FwController getFeetUiController(Context context){
-        return  FwController.getInstance(context);
+    public static FwController getFeetUiController( ){
+        return  FwController.getInstance();
     }
 
 }

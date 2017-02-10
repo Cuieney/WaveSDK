@@ -13,10 +13,8 @@ import java.util.List;
  */
 public class MusicHelper implements IMusicCallBack {
 
-    private WeakReference<Context> weakReference;
     private MusicProxy proxy;
     public MusicHelper(WeakReference<Context> weakReference) {
-        this.weakReference = weakReference;
         proxy = new MusicProxy(weakReference);
     }
 

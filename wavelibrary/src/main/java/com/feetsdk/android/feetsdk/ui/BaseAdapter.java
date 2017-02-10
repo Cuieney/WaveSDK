@@ -46,7 +46,7 @@ public abstract class BaseAdapter<T> extends android.widget.BaseAdapter {
         this.context = context;
         this.list = new ArrayList<T>();
         this.addAll(list);
-        inflater = inflater.from(context);
+        inflater = LayoutInflater.from(context);
     }
 
     @Override

@@ -16,23 +16,27 @@ public class FwController {
     private static FwController controller;
     private Dialog dialog;
 
-    private FwController(Context context) {
-        this.context = context;
-        fwProxy = new FWProxy(context);
-        mFloatPermission = new FloatPermission(context);
+    private FwController() {
+        mFloatPermission = new FloatPermission();
     }
-    public synchronized static FwController getInstance(Context context){
+    public synchronized static FwController getInstance(){
         if (controller == null) {
-            controller = new FwController(context);
+            controller = new FwController();
         }
         return controller;
     }
 
-    public void show() {
-        if (mFloatPermission == null) {
-            mFloatPermission = new FloatPermission(context);
+    private synchronized void checkProxyIsNull(Context context){
+        if (fwProxy == null) {
+            fwProxy = new FWProxy(context);
         }
-        if (mFloatPermission.checkPermission()) {
+    }
+    public void show(Context context) {
+        checkProxyIsNull(context);
+        if (mFloatPermission == null) {
+            mFloatPermission = new FloatPermission();
+        }
+        if (mFloatPermission.checkPermission(context)) {
             //调用浮动窗口
             fwProxy.show();
         }else{
@@ -40,13 +44,15 @@ public class FwController {
         }
     }
 
-    public void remove(){
+    public void remove(Context context){
+        checkProxyIsNull(context);
         fwProxy.remove();
         controller = null;
         context = null;
     }
 
-    public void dismiss() {
+    public void dismiss(Context context) {
+        checkProxyIsNull(context);
         fwProxy.dismiss();
     }
 }

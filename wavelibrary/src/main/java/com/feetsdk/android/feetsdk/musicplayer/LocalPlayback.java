@@ -268,7 +268,7 @@ public class LocalPlayback implements Playback, FeetPlayer.OnPreparedListener, F
                         mState = PlaybackStateCompat.STATE_PLAYING;
                     } else {
                         long durationSeconds = mMediaPlayer.getDurationSeconds();
-                        float percent = ((float) (((float) mCurrentPosition) / ((float) durationSeconds)));
+                        float percent = (((float) mCurrentPosition) / ((float) durationSeconds));
                         mMediaPlayer.setSeek(((int) (percent * 100)));
                         mState = PlaybackStateCompat.STATE_BUFFERING;
                         mMediaPlayer.onPlayPause(true);

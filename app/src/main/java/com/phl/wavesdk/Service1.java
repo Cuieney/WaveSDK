@@ -17,7 +17,7 @@ public class Service1 extends Service{
     public void onCreate() {
         super.onCreate();
         //TODO do some thing what you want..
-         FeetSdk.getFeetUiController(this).show();
+         FeetSdk.getFeetUiController().show(this);
     }
 
     @Override

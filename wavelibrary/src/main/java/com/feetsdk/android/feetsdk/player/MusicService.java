@@ -1,5 +1,6 @@
 package com.feetsdk.android.feetsdk.player;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
@@ -12,6 +13,7 @@ import java.lang.ref.WeakReference;
 /**
  * Created by cuieney on 16/11/21.
  */
+@SuppressLint("Registered")
 public class MusicService extends Service {
     IMusicServiceHandler handler;
 
@@ -52,6 +54,7 @@ public class MusicService extends Service {
         }
     }
 
+    @SuppressLint("Registered")
     public static class DaemonInnerService extends Service {
 
         @Override

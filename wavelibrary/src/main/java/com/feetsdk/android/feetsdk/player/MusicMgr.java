@@ -26,7 +26,6 @@ public class MusicMgr implements IMusicControler {
     private List<Music> musics;
     private int index;
     private OrmHelper ormHelper;
-    private HttpControler httpControler;
     private WeakReference<Context> contextWeakReference;
     private int type;
 
@@ -35,7 +34,6 @@ public class MusicMgr implements IMusicControler {
         player = new FeetPlayer(contextWeakReference.get());
         musics = new ArrayList<>();
         ormHelper = new OrmHelper(contextWeakReference.get());
-        httpControler = new HttpControler(contextWeakReference.get());
 
     }
 
@@ -44,12 +42,10 @@ public class MusicMgr implements IMusicControler {
         if (EventType.PLAY_MUSIC_TYPE_NORMAL == type) {
             List<LocalSongs> music = ormHelper.getMusic();
             for (LocalSongs song : music) {
-                if (true) {
-                    Music msc = new Music(song.getSongId(), song.getSongName(), song.getCoverImageUrl(),
-                            song.getProgress(), song.getPath(), song.getSingerName(), song.getTempo(),
-                            song.getSize(), song.getCollection(), song.getListener(),song.getImgPath());
-                    musics.add(msc);
-                }
+                Music msc = new Music(song.getSongId(), song.getSongName(), song.getCoverImageUrl(),
+                        song.getProgress(), song.getPath(), song.getSingerName(), song.getTempo(),
+                        song.getSize(), song.getCollection(), song.getListener(),song.getImgPath());
+                musics.add(msc);
             }
         } else if (EventType.PLAY_MUSIC_TYPE_COLLECTION == type) {
             List<FavSong> favMsc = ormHelper.getFavMsc();

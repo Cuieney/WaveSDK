@@ -66,13 +66,13 @@ public class MainActivity extends AppCompatActivity {
         play = findViewById(R.id.play);
         container = findViewById(R.id.download_container);
         bezier = findViewById(R.id.bezier);
-        feetUiController = FeetSdk.getFeetUiController(this);
+        feetUiController = FeetSdk.getFeetUiController();
 //        startService(new Intent(MainActivity.this, Service1.class));
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (feetUiController != null) {
-                    feetUiController.show();
+                    feetUiController.show(context);
                 }
             }
         });

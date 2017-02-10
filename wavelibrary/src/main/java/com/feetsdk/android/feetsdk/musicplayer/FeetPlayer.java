@@ -53,9 +53,8 @@ public class FeetPlayer implements ISuperPowerPlayer {
 
     private JniBridge jniBridge;
 
-    private EventHandler mEventHandler;
+    private static EventHandler mEventHandler;
     private PowerManager.WakeLock mWakeLock = null;
-    private final Runnable mRunnable;
     private boolean isListener = true;
 
     public FeetPlayer(Context context) {
@@ -103,7 +102,7 @@ public class FeetPlayer implements ISuperPowerPlayer {
 
 
         //监听播放进度
-        mRunnable = new Runnable() {
+        Runnable mRunnable = new Runnable() {
             @Override
             public void run() {
                 int progress = (int) (jniBridge.getPositionPercent() * 100);
@@ -117,7 +116,7 @@ public class FeetPlayer implements ISuperPowerPlayer {
                 }
                 if (isListener) {
                     mHandler.postDelayed(this, 500);
-                }else{
+                } else {
                     jniBridge = null;
                 }
             }
@@ -187,7 +186,7 @@ public class FeetPlayer implements ISuperPowerPlayer {
 
     }
 
-    private Handler handler = new Handler(){
+    private static Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -303,7 +302,7 @@ public class FeetPlayer implements ISuperPowerPlayer {
                 remixPlay(file);
             } else {
                 if (mEventHandler != null) {
-                    mEventHandler.onErrorListener(404, 404);
+                    mEventHandler.onErrorListener();
                 }
             }
         } else {
@@ -311,7 +310,7 @@ public class FeetPlayer implements ISuperPowerPlayer {
                 play(file);
             } else {
                 if (mEventHandler != null) {
-                    mEventHandler.onErrorListener(404, 404);
+                    mEventHandler.onErrorListener();
                 }
             }
         }
@@ -369,9 +368,9 @@ public class FeetPlayer implements ISuperPowerPlayer {
             }
         }
 
-        public void onErrorListener(int arg1, int arg2) {
+        public void onErrorListener() {
             if (onErrorListener != null) {
-                onErrorListener.onErrorListener(mFp, arg1, arg2);
+                onErrorListener.onErrorListener(mFp, 404, 404);
             }
         }
     }

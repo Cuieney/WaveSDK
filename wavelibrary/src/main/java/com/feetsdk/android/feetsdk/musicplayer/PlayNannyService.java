@@ -1,5 +1,6 @@
 package com.feetsdk.android.feetsdk.musicplayer;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.Service;
 import android.content.ComponentName;
@@ -77,6 +78,7 @@ public class PlayNannyService extends Service {
         }
     }
 
+    @SuppressLint("Registered")
     public static class DaemonInnerService extends Service {
 
         @Override

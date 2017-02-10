@@ -31,7 +31,7 @@ public class FloatWindow {
     private View mContentView;
 
     private static final int WHAT_HIDE = 0x275;
-    private final float DISTANCE = 15.0f;  //  点击偏移量   在上、下、左、右这个范围之内都会触发点击事件
+    private final static float DISTANCE = 15.0f;  //  点击偏移量   在上、下、左、右这个范围之内都会触发点击事件
     private float offsetX, offsetY;
 
     private long lastTouchTimeMillis;
@@ -44,7 +44,6 @@ public class FloatWindow {
 
 
     private View mFloatView, mPlayerView;
-    ;
 
     /**
      * 不带布局参数的构造方法
@@ -182,7 +181,7 @@ public class FloatWindow {
         getLayoutParams().type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         getLayoutParams().height = WindowManager.LayoutParams.WRAP_CONTENT;
         getLayoutParams().width = WindowManager.LayoutParams.WRAP_CONTENT;
-        getLayoutParams().gravity = Gravity.LEFT | Gravity.TOP;
+        getLayoutParams().gravity = Gravity.START | Gravity.TOP;
         getLayoutParams().format = PixelFormat.RGBA_8888;
         getLayoutParams().alpha = 1.0f;  //  设置整个窗口的透明度
         offsetX = 0;
@@ -293,8 +292,7 @@ public class FloatWindow {
             Point endPoint = (Point) to;
             float x = startPoint.x + fraction * (endPoint.x - startPoint.x);
             float y = startPoint.y + fraction * (endPoint.y - startPoint.y);
-            Point point = new Point((int) x, (int) y);
-            return point;
+            return new Point((int) x, (int) y);
         }
     }
 

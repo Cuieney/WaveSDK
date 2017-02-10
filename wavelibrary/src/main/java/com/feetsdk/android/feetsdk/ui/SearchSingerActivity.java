@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -38,9 +39,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
     private EditText searchEdit;
     private ViewPager vpg;
     private LinearLayout points;
-    private View cancelTxt;
     private List<GridView> gridViewList;
-    private LinkedHashMap<Object, Object> chooseSingerList;
     public HttpControler httpControler;
     private List<RspSinger> mData;
 
@@ -55,7 +54,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
         AppManager.getAppManager().addActivity(this);
         gridViewList = new ArrayList<>();
         mData = new ArrayList<>();
-        chooseSingerList = new LinkedHashMap<>();
+        LinkedHashMap<Object, Object> chooseSingerList = new LinkedHashMap<>();
         chooseSingerList.put(1, null);
         chooseSingerList.put(2, null);
         chooseSingerList.put(3, null);
@@ -156,7 +155,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
         searchEdit = (EditText) findViewById(R.id.search_edit);
         vpg = (ViewPager) findViewById(R.id.singer_vpg);
         points = (LinearLayout) findViewById(R.id.points);
-        cancelTxt = findViewById(R.id.cancel_txt);
+        View cancelTxt = findViewById(R.id.cancel_txt);
 
         cancelTxt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +167,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
 
     private void loadView() {
         int change = 0;
-        HashMap<Integer, List<RspSinger>> hashMap = new HashMap<>();
+        SparseArray<List<RspSinger>> hashMap = new SparseArray<>();
         points.removeAllViews();
         hashMap.clear();
         List<RspSinger> save = new ArrayList<>();

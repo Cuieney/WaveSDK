@@ -13,7 +13,6 @@ import com.feetsdk.android.feetsdk.musicplayer.AlbumArtCache;
  */
 
 public class ImageLoader {
-    private Context context;
 
     private static ImageLoader imageLoader;
 
@@ -30,10 +29,9 @@ public class ImageLoader {
         String fetchArtUrl = null;
         Bitmap art = null;
         if (url != null) {
-            String artUrl = url;
-            art = AlbumArtCache.getInstance().getBigImage(artUrl);
+            art = AlbumArtCache.getInstance().getBigImage(url);
             if (art == null) {
-                fetchArtUrl = artUrl;
+                fetchArtUrl = url;
                 art = BitmapFactory.decodeResource(context.getResources(),
                         R.drawable.ic_default_art);
             }

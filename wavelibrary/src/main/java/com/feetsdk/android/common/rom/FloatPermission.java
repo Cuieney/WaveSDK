@@ -22,21 +22,22 @@ public class FloatPermission {
     private static FloatPermission mFloatPerssion;
     private String TAG = "FloatPermission";
 
-    public FloatPermission(Context context) {
-        this.context = context;
+    public FloatPermission() {
+
     }
 
-    public static FloatPermission getInstance(Context context) {
+    public static FloatPermission getInstance() {
         synchronized (FloatPermission.class) {
             if (mFloatPerssion == null) {
-                mFloatPerssion = new FloatPermission(context);
+                mFloatPerssion = new FloatPermission();
             }
             return mFloatPerssion;
         }
     }
 
 
-    public boolean checkPermission() {
+    public boolean checkPermission(Context context) {
+        this.context = context;
         //6.0 版本之后由于 google 增加了对悬浮窗权限的管理，所以方式就统一了
         if (Build.VERSION.SDK_INT < 23) {
             if (RomUtils.checkIsMiuiRom()) {

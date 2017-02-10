@@ -43,27 +43,22 @@ public class NetWork {
     public WeakReference<Context> contextWeakReference;
 
     private OkHttpClient client;
-    private InterceptorFactory interceptor;
-    private Cache cache;
-    private CookieJar cookieJar;
     private String url;
     private int method;
 
     private List<String> strings;
 
     private RequestBody requestBody;
-    private Context context;
 
     public NetWork(@NonNull Context context) {
-        this.context = context;
         this.contextWeakReference = new WeakReference<>(context);
     }
 
     private NetWork(Builder builder) {
 
-        cache = builder.cache;
-        interceptor = builder.interceptor;
-        cookieJar = builder.cookieJar;
+        Cache cache = builder.cache;
+        InterceptorFactory interceptor = builder.interceptor;
+        CookieJar cookieJar = builder.cookieJar;
         url = builder.url;
         method = builder.method;
         client = provideClient(cache, interceptor, cookieJar);

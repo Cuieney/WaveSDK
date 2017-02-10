@@ -16,11 +16,6 @@ import java.util.List;
     public static List<List<Double>> arrayAll;
 
 
-    private static double timeDuration1 = 8.0;
-    private static double timeDuration2 = 30.0;
-    private static int window = 4;
-
-
     private static int saveWindow = 30;
 
     static {
@@ -90,6 +85,7 @@ import java.util.List;
         double[] x_optimun = calmanFilter(array);
 //        Log.i(TAG, "variance: " + variance(middle(array)));
         if (variance(middle(array)) > 0.15) {
+            int window = 4;
             step = countPeak(x_optimun, window);
         }
 
@@ -154,11 +150,13 @@ import java.util.List;
         List<Double> firstValue = arrayAll.get(0);
 //        Log.i(TAG, "controller: "+firstValue.size()+",,,"+log.size());
         if (firstValue.size() == 0) {
+            double timeDuration1 = 8.0;
             bpm1 = bpmCount(timeDuration1);
             bpm2 = bpm1;
 
         } else {
 
+            double timeDuration2 = 30.0;
             bpm2 = bpmCount(timeDuration2);
             bpm1 = bpm2;
         }

@@ -458,7 +458,6 @@ public class CircularMusicProgressBar extends ImageView {
 
         mBorderRect.set(calculateBounds());
         mBorderRadius = Math.min((mBorderRect.height() - mBorderWidth) / 2.0f, (mBorderRect.width() - mBorderWidth) / 2.0f);
-
         mDrawableRect.set(mBorderRect);
         if (!mBorderOverlay && mBorderWidth > 0) {
             mDrawableRect.inset(mBorderWidth, mBorderWidth);

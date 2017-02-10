@@ -340,7 +340,6 @@ public class MusicService extends MediaBrowserServiceCompat implements PlaybackM
         ormHelper.closeDb();
     }
 
-
     @Nullable
     @Override
     public BrowserRoot onGetRoot(@NonNull String clientPackageName, int clientUid, @Nullable Bundle rootHints) {

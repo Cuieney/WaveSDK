@@ -3,6 +3,7 @@ package com.feetsdk.android.feetsdk.ui;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -42,7 +43,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
     private List<GridView> gridViewList;
     public HttpControler httpControler;
     private List<RspSinger> mData;
-
+    private boolean isLoaded = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,16 +97,18 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String singerName = s.toString();
-                try {
-                    singerName = URLEncoder.encode(singerName,"utf-8");
-                    singerName = URLEncoder.encode(singerName,"utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                if (isLoaded) {
+                    isLoaded = false;
+                    String singerName = s.toString();
+                    try {
+                        singerName = URLEncoder.encode(singerName, "utf-8");
+                        singerName = URLEncoder.encode(singerName, "utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    searchData(singerName);
                 }
-                searchData(singerName);
             }
-
             @Override
             public void afterTextChanged(Editable s) {
             }
@@ -120,6 +123,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
         httpControler.searchArtists(new IHttpRspCallBack() {
             @Override
             public void success(HttpResponse response) {
+                mData.clear();
                 List<RspSinger> rspSingerList = new ArrayList<>();
                 try {
                     JSONArray jsonArray = new JSONArray(response.getMessage());
@@ -169,7 +173,6 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
         int change = 0;
         SparseArray<List<RspSinger>> hashMap = new SparseArray<>();
         points.removeAllViews();
-        hashMap.clear();
         List<RspSinger> save = new ArrayList<>();
         for (int i = 0; i < mData.size(); i++) {
             int index = i / 6;
@@ -217,7 +220,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
         }
 
         vpg.setAdapter(new ChooseSingerVpgAdapter(gridViewList));
-
+        isLoaded = true;
     }
 
     @Override

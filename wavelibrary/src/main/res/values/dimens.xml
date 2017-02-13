@@ -82,4 +82,15 @@
     <dimen name="singer_search_singer_cancel_margin_right">14px</dimen>
 
     <dimen name="search_singer_edit_margin_top">50px</dimen>
+
+
+    <dimen name="fw_width">350px</dimen>
+    <dimen name="fw_height">60px</dimen>
+    <dimen name="fw_player_padding">20px</dimen>
+    <dimen name="fw_player_margin">20px</dimen>
+    <dimen name="fw_player_padding_top">10px</dimen>
+    <dimen name="fw_icon_width">35px</dimen>
+    <dimen name="fw_icon_height">35px</dimen>
+    <dimen name="fw_txt_padding_left">40px</dimen>
+    <dimen name="fw_txt_padding_right">80px</dimen>
 </resources>

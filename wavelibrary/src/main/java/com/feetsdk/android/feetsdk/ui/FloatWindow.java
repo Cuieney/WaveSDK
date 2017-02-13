@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.os.Handler;
@@ -14,6 +15,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
@@ -58,7 +60,7 @@ public class FloatWindow {
     public FloatWindow(Context context, View PlayerView, View floatView) {
         this.mContext = context;
         setFloatView(floatView);
-        setPlayerView(PlayerView);
+        setPlayerView(PlayerView,0);
         initWindowManager();
         initLayoutParams();
     }
@@ -66,13 +68,13 @@ public class FloatWindow {
     /**
      * 设置开启状态的布局视图
      */
-    public void setPlayerView(View PlayerView) {
+    public void setPlayerView(View PlayerView,int location) {
         if (PlayerView != null) {
             BackgroundView backgroundView = new BackgroundView(getContext());
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
             layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-//            layoutParams.setMargins(0,0,0,200);
+            layoutParams.setMargins(0,0,0,location);
             PlayerView.setOnTouchListener(new TouchIntercept());
             PlayerView.setLayoutParams(layoutParams);
             backgroundView.addView(PlayerView);
@@ -321,6 +323,7 @@ public class FloatWindow {
         if (!isOpen) {
             return;
         }
+        mContext.sendBroadcast(new Intent(FWProxy.ACTION_OUTSIDE));
         isOpen = false;
         getLayoutParams().flags &= ~(WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE);// 取消WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE属性
         getLayoutParams().flags |= WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;//重新设置WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE属性

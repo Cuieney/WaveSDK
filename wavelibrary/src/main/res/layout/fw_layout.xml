@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/player_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
 
-        <RelativeLayout
-            android:layout_width="350dp"
-            android:layout_height="60dp"
-            android:background="#21c4e4"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="@dimen/fw_width"
+            android:layout_height="@dimen/fw_height"
+            android:background="@color/blue"
+            android:paddingLeft="@dimen/fw_player_padding"
+            android:paddingRight="@dimen/fw_player_padding">
 
             <ImageView
                 android:id="@+id/lock"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/back_icon_width"
+                android:layout_height="@dimen/back_icon_height"
                 android:layout_centerVertical="true"
                 android:src="@drawable/lock_btn" />
 
             <ImageView
                 android:id="@+id/stop"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/back_icon_width"
+                android:layout_height="@dimen/back_icon_height"
                 android:layout_centerVertical="true"
                 android:src="@drawable/stop_btn"
                 android:visibility="gone" />
 
             <ImageView
                 android:id="@+id/close"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/back_icon_width"
+                android:layout_height="@dimen/back_icon_height"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/arrow_bottom" />
 
             <ImageView
                 android:id="@+id/next"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/back_icon_width"
+                android:layout_height="@dimen/back_icon_height"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="@dimen/fw_player_margin"
                 android:layout_toLeftOf="@id/close"
                 android:src="@mipmap/next" />
 
             <ImageView
                 android:id="@+id/pause"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/back_icon_width"
+                android:layout_height="@dimen/back_icon_height"
                 android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/next"
                 android:layout_toRightOf="@id/lock"
@@ -61,10 +61,10 @@
 
             <ImageView
                 android:id="@+id/play"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/back_icon_width"
+                android:layout_height="@dimen/back_icon_height"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="@dimen/fw_player_margin"
                 android:layout_toLeftOf="@+id/close"
                 android:src="@drawable/play_btn"
                 android:visibility="gone" />
@@ -74,30 +74,30 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="40dp"
-                android:paddingRight="80dp"
+                android:paddingLeft="@dimen/fw_txt_padding_left"
+                android:paddingRight="@dimen/fw_txt_padding_right"
                 android:singleLine="true"
                 android:ellipsize="marquee"
                 android:layout_centerInParent="true"
                 android:visibility="gone"
                 android:textColor="#fff" />
 
-        </RelativeLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
 
-        <RelativeLayout
+        <com.zhy.autolayout.AutoRelativeLayout
             android:animateLayoutChanges="true"
             android:id="@+id/lock_container"
-            android:layout_width="350dp"
-            android:layout_height="60dp"
-            android:background="#21c4e4"
+            android:layout_width="@dimen/fw_width"
+            android:layout_height="@dimen/fw_height"
+            android:background="@color/blue"
             android:orientation="horizontal"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp">
+            android:paddingLeft="@dimen/fw_player_padding"
+            android:paddingRight="@dimen/fw_player_padding">
 
             <ImageView
                 android:id="@+id/sub"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/back_icon_width"
+                android:layout_height="@dimen/back_icon_height"
                 android:layout_centerVertical="true"
                 android:src="@drawable/sub_btn" />
 
@@ -113,14 +113,14 @@
 
             <ImageView
                 android:id="@+id/add"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/back_icon_width"
+                android:layout_height="@dimen/back_icon_height"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/add_btn" />
 
-        </RelativeLayout>
-    </LinearLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 
 
     <LinearLayout
@@ -131,31 +131,31 @@
 
 
         <RelativeLayout
-            android:layout_width="350dp"
-            android:layout_height="60dp"
-            android:background="#21c4e4"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="10dp">
+            android:layout_width="@dimen/fw_width"
+            android:layout_height="@dimen/fw_height"
+            android:background="@color/blue"
+            android:paddingLeft="@dimen/fw_player_padding"
+            android:paddingRight="@dimen/fw_player_padding"
+            android:paddingTop="@dimen/fw_player_padding_top">
 
             <ImageView
                 android:id="@+id/menu"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/back_icon_width"
+                android:layout_height="@dimen/back_icon_height"
                 android:layout_centerVertical="true"
                 android:src="@drawable/menu_icon" />
 
             <ImageView
                 android:id="@+id/download_play"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/back_icon_width"
+                android:layout_height="@dimen/back_icon_height"
                 android:layout_centerInParent="true"
                 android:src="@drawable/play_btn" />
 
             <ImageView
                 android:id="@+id/download_close"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/back_icon_width"
+                android:layout_height="@dimen/back_icon_height"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/arrow_bottom" />
@@ -173,4 +173,4 @@
             android:progressBackgroundTint="#fff"
             android:progressTint="#EB4141" />
     </LinearLayout>
-</RelativeLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

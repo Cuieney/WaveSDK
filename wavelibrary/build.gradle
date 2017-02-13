@@ -72,17 +72,17 @@ android {
 
     buildTypes {
         debug {
-//            minifyEnabled false  //代码混淆处理
-//            shrinkResources false //删除没用的资源
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.debug1
+            minifyEnabled false  //代码混淆处理
+            shrinkResources false //删除没用的资源
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug1
         }
 
         release {
-//            minifyEnabled true
-//            shrinkResources true
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-//            signingConfig signingConfigs.release1
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release1
         }
     }
 

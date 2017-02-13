@@ -228,6 +228,7 @@ public class ChooseSingerActivity extends AutoLayoutActivity implements BaseAdap
         chooseThree();
     }
 
+    //判断是否选中三个歌手 按钮变色
     private void chooseThree() {
         boolean isAll = true;
         for (Map.Entry<Integer, RspSinger> entry : chooseSingerList.entrySet()) {

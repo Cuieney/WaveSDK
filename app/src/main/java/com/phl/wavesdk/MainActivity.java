@@ -19,8 +19,8 @@ import android.widget.TextView;
 
 import com.feetsdk.android.FeetSdk;
 import com.feetsdk.android.feetsdk.Music;
-import com.feetsdk.android.feetsdk.download.DownloadControler;
-import com.feetsdk.android.feetsdk.musicplayer.MusicController;
+//import com.feetsdk.android.feetsdk.download.DownloadControler;
+//import com.feetsdk.android.feetsdk.musicplayer.MusicController;
 import com.feetsdk.android.feetsdk.ui.FwController;
 
 import java.util.Random;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public TextView progress, title;
     public Button start, next, prev, pause, clean;
     public ImageView imageView;
-    public MusicController musicController;
+//    public MusicController musicController;
     private String TAG = "MainActivity";
     private Context context;
     private Dialog dialog;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private View container;
     public View bezier;
     public View play;
-    public DownloadControler downloadControler;
+//    public DownloadControler downloadControler;
 
     private Music currentSongs;
     public TextView bpm;
@@ -298,10 +298,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if (musicController != null) {
-            musicController.unregisterMediaControllerListener();
-            musicController.unregisterMusicChangeListener();
-        }
+//        if (musicController != null) {
+//            musicController.unregisterMediaControllerListener();
+//            musicController.unregisterMusicChangeListener();
+//        }
 
     }
 
@@ -375,16 +375,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setStepFreq(int value) {
-        if (currentSongs != null && musicController != null) {
-            int tempo = Integer.parseInt(currentSongs.getTempo());
-            if (value >= 120 && value <= 220) {
-                bpm.setText(value + "");
-                musicController.setTempo(value);
-            } else {
-                bpm.setText("120");
-                musicController.setTempo(120);
-            }
-        }
+//        if (currentSongs != null && musicController != null) {
+//            int tempo = Integer.parseInt(currentSongs.getTempo());
+//            if (value >= 120 && value <= 220) {
+//                bpm.setText(value + "");
+//                musicController.setTempo(value);
+//            } else {
+//                bpm.setText("120");
+//                musicController.setTempo(120);
+//            }
+//        }
 
 
     }

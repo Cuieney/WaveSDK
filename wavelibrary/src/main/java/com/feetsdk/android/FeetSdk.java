@@ -50,7 +50,7 @@ public class FeetSdk {
         config.debug("使用开始");
     }
 
-    public void setMobileNetWorkVisiable(Context context){
+    public void setMobileNetWorkAvailable(Context context){
         config.initDevInfo(context);
         config.setCellularData(true);
     }
@@ -60,7 +60,7 @@ public class FeetSdk {
         config.setDefaultMusciSize(size);
     }
 
-    public static boolean getMobileNetWorkVisiable(){
+    public static boolean getMobileNetWorkAvailable(){
         FeetConfig feetConfig = new FeetConfig();
         return feetConfig.getCellularData();
     }

@@ -14,7 +14,7 @@
 
 ```
 dependencies {
-    compile 'com.phl.sdk:wavelibrary:1.0.2'
+    compile 'com.phl.sdk:wavelibrary:1.0.0'
 }
 ```
 
@@ -42,10 +42,12 @@ dependencies {
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />  
 ```
 #### 第二步：
-配置build.gradle文件，由于项目依赖GreenDAO需要添加相应的插件
+配置build.gradle文件，由于项目依赖GreenDAO需要添加相应的插件（其他两个插件是maven和jcenter插件）
 
 ```
  classpath 'org.greenrobot:greendao-gradle-plugin:3.2.0'
+ classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
+ classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
 ```
 #### 第三步：
 在你的Application中初始化SDK
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 | setBpm(int) |  可以手动设置音乐节奏（需提前调用setAutoBpm（false）） |
 
 
-###依赖
+###项目依赖
 GreenDAO： <https://github.com/greenrobot/greenDAO>
 <br>AndroidAutoLayout:<https://github.com/hongyangAndroid/AndroidAutoLayout>
 <br>FileDownloader:<https://github.com/lingochamp/FileDownloader>

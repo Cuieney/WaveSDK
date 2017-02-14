@@ -14,7 +14,7 @@
 
 ```
 dependencies {
-    compile 'com.phl.sdk:wavelibrary:1.0.0'
+    compile 'com.phl.sdk:wavelibrary:1.0.2'
 }
 ```
 

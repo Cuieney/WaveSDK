@@ -1,7 +1,6 @@
 # Wave SDK
 
 ![wave icon](https://github.com/Cuieney/WaveSDK/blob/master/app/src/main/res/mipmap-hdpi/play.gif)
-
 ![wave icon](https://github.com/Cuieney/WaveSDK/blob/master/app/src/main/res/mipmap-hdpi/singer.gif)
 
 ## 简介
@@ -114,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 | setBpm(int) |  可以手动设置音乐节奏（需提前调用setAutoBpm（false）） |
 
 
-###项目依赖
+###依赖
 GreenDAO： <https://github.com/greenrobot/greenDAO>
 <br>AndroidAutoLayout:<https://github.com/hongyangAndroid/AndroidAutoLayout>
 <br>FileDownloader:<https://github.com/lingochamp/FileDownloader>

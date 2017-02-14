@@ -75,11 +75,8 @@ public class FeetConfig implements IFeetConfig {
     }
 
     private boolean ExistSDCard() {
-        if (android.os.Environment.getExternalStorageState().equals(
-                android.os.Environment.MEDIA_MOUNTED)) {
-            return true;
-        } else
-            return false;
+        return Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED);
     }
 
 

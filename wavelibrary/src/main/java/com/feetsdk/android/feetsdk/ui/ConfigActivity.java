@@ -91,28 +91,28 @@ public class ConfigActivity extends AutoLayoutActivity implements View.OnClickLi
                 sixtyIcon.setVisibility(View.INVISIBLE);
                 oneHundredIcon.setVisibility(View.INVISIBLE);
                 twoHundredIcon.setVisibility(View.INVISIBLE);
-                FeetSdk.getInstance(this).setMusicLibrarySize(10);
+                FeetSdk.getInstance().setMusicLibrarySize(this,10);
                 break;
             case 60:
                 thirtyIcon.setVisibility(View.INVISIBLE);
                 sixtyIcon.setVisibility(View.VISIBLE);
                 oneHundredIcon.setVisibility(View.INVISIBLE);
                 twoHundredIcon.setVisibility(View.INVISIBLE);
-                FeetSdk.getInstance(null).setMusicLibrarySize(20);
+                FeetSdk.getInstance().setMusicLibrarySize(this,20);
                 break;
             case 120:
                 thirtyIcon.setVisibility(View.INVISIBLE);
                 sixtyIcon.setVisibility(View.INVISIBLE);
                 oneHundredIcon.setVisibility(View.VISIBLE);
                 twoHundredIcon.setVisibility(View.INVISIBLE);
-                FeetSdk.getInstance(null).setMusicLibrarySize(30);
+                FeetSdk.getInstance().setMusicLibrarySize(this,30);
                 break;
             case 240:
                 thirtyIcon.setVisibility(View.INVISIBLE);
                 sixtyIcon.setVisibility(View.INVISIBLE);
                 oneHundredIcon.setVisibility(View.INVISIBLE);
                 twoHundredIcon.setVisibility(View.VISIBLE);
-                FeetSdk.getInstance(this).setMusicLibrarySize(40);
+                FeetSdk.getInstance().setMusicLibrarySize(this,40);
                 break;
         }
     }

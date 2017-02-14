@@ -23,14 +23,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.feetsdk.android.FeetSdk;
 import com.feetsdk.android.R;
-import com.feetsdk.android.common.utils.ToastUtil;
+import com.feetsdk.android.common.utils.Logger;
 import com.feetsdk.android.feetsdk.Music;
 import com.feetsdk.android.feetsdk.annotation.EventType;
 import com.feetsdk.android.feetsdk.download.DownloadControler;
@@ -38,7 +37,6 @@ import com.feetsdk.android.feetsdk.download.IUpdateProgressCallBack;
 import com.feetsdk.android.feetsdk.entity.DownloadProgress;
 import com.feetsdk.android.feetsdk.entity.UpdateProgress;
 import com.feetsdk.android.feetsdk.musicplayer.MusicController;
-import com.feetsdk.android.feetsdk.musicplayer.MusicProxy;
 import com.feetsdk.android.feetsdk.musicplayer.OnMediaControllerListener;
 import com.feetsdk.android.feetsdk.musicplayer.OnMediaStateUpdatedListener;
 import com.feetsdk.android.feetsdk.musicplayer.OnMusicChangeListener;
@@ -85,7 +83,11 @@ public class FWProxy implements View.OnClickListener {
 
     private int totalMin;
 
+    private boolean isPlaying;
+    private boolean tempoAuto = true;
+
     public static final String UPDATE_DB = "UPDATE_DB";
+    public static final String ACTION_OUTSIDE = "ACTION_OUTSIDE";
 
     private Handler handler = new Handler() {
         @Override
@@ -97,7 +99,7 @@ public class FWProxy implements View.OnClickListener {
                 mPlayerNext.setVisibility(View.VISIBLE);
                 mPlayerName.setVisibility(View.GONE);
                 mPlayerPause.setVisibility(View.VISIBLE);
-            }else if(msg.what == 3){
+            } else if (msg.what == 3) {
                 mPlayerBpm.setText(((String) msg.obj));
             }
 
@@ -111,16 +113,20 @@ public class FWProxy implements View.OnClickListener {
                 mFloatWindow.show();
                 mFloatWindow.turnMini();
                 updateMusicDownload();
+            } else if (intent.getAction().equals(ACTION_OUTSIDE)) {
+                if (isPlaying) {
+                    startAnimator();
+                }
             }
         }
     };
 
-    public FWProxy(Context context) {
+    public FWProxy(Context context, int location) {
         this.context = context.getApplicationContext();
-        init();
+        init(location);
     }
 
-    private void init() {
+    private void init(int location) {
         mMenuLayout = LayoutInflater.from(context).inflate(R.layout.fw_menu_layout, null);
         mPlayerLayout = LayoutInflater.from(context).inflate(R.layout.fw_layout, null);
         initView();
@@ -131,10 +137,11 @@ public class FWProxy implements View.OnClickListener {
 
         mFloatWindow = new FloatWindow(context);
         mFloatWindow.setFloatView(mMenuLayout);
-        mFloatWindow.setPlayerView(mPlayerLayout);
+        mFloatWindow.setPlayerView(mPlayerLayout, location);
 
         IntentFilter filter = new IntentFilter();
         filter.addAction(UPDATE_DB);
+        filter.addAction(ACTION_OUTSIDE);
         context.registerReceiver(receiver, filter);
 
     }
@@ -199,8 +206,10 @@ public class FWProxy implements View.OnClickListener {
             public void OnMediaStateUpdated(PlaybackStateCompat playbackStateCompat) {
                 if (playbackStateCompat.getState() == PlaybackStateCompat.STATE_PLAYING) {
                     updatePlayState();
+                    isPlaying = true;
                 } else if (playbackStateCompat.getState() == PlaybackStateCompat.STATE_PAUSED) {
                     updatePauseState();
+                    isPlaying = false;
                 }
             }
         });
@@ -213,10 +222,10 @@ public class FWProxy implements View.OnClickListener {
 
             @Override
             public void getCurrentBpm(int bpm) {
-                if (isLocked) {
+                if (tempoAuto && isLocked) {
                     mMusicCtl.setTempo(bpm);
                     Message message = Message.obtain();
-                    message.obj = bpm+"BPM";
+                    message.obj = bpm + "BPM";
                     message.what = 3;
                     handler.sendMessage(message);
                 }
@@ -264,13 +273,11 @@ public class FWProxy implements View.OnClickListener {
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.download_play) {
-            if (totalMin > 0) {
-                showPlayer();
-            }
+            playMusic();
         }
 
         if (i == R.id.pause) {
-            mMusicCtl.onPause();
+            pauseMusic();
 //            updatePauseState();
         }
 
@@ -306,12 +313,36 @@ public class FWProxy implements View.OnClickListener {
             mFloatWindow.turnMini();
         }
 
-        if (i == R.id.menu){
+        if (i == R.id.menu) {
             mFloatWindow.dismiss();
             Intent intent = new Intent(context, ConfigActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         }
+    }
+
+    public void pauseMusic() {
+        mMusicCtl.onPause();
+    }
+
+    public void playMusic() {
+        if (totalMin > 0) {
+            showPlayer();
+        }
+    }
+
+    public void setTempo(int value) {
+        if (value >= 120 && value <= 220) {
+            mPlayerBpm.setText(value + "BPM");
+            mMusicCtl.setTempo(value);
+        } else {
+            mPlayerBpm.setText("120BPM");
+            mMusicCtl.setTempo(120);
+        }
+    }
+
+    public void setAutoTempo(boolean auto) {
+        tempoAuto = auto;
     }
 
 
@@ -375,17 +406,19 @@ public class FWProxy implements View.OnClickListener {
         mMusicCtl.onCustomAction("updated_song", new Bundle());
         flipCard();
 
-        Animation operatingAnim = AnimationUtils.loadAnimation(context, R.anim.rotate);
-        LinearInterpolator lin = new LinearInterpolator();
-        operatingAnim.setInterpolator(lin);
-        mCircularProgress.startAnimation(operatingAnim);
-
 //        mCircularProgress.setImageResource(R.drawable.play_animation);
 //        AnimationDrawable animationDrawable = (AnimationDrawable) mCircularProgress.getDrawable();
 //        animationDrawable.start();
     }
 
-    private void showDownload() {
+    private void startAnimator() {
+        Animation operatingAnim = AnimationUtils.loadAnimation(context, R.anim.rotate);
+        LinearInterpolator lin = new LinearInterpolator();
+        operatingAnim.setInterpolator(lin);
+        mCircularProgress.startAnimation(operatingAnim);
+    }
+
+    public void showDownload() {
         flipCard();
         if (mediaSessionControls != null &&
                 (mediaSessionControls.getPlaybackState().getState() == PlaybackStateCompat.STATE_PLAYING)) {

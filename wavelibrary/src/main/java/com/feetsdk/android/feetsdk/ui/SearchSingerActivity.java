@@ -3,9 +3,11 @@ package com.feetsdk.android.feetsdk.ui;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.v4.view.ViewPager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.SparseArray;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -38,12 +40,10 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
     private EditText searchEdit;
     private ViewPager vpg;
     private LinearLayout points;
-    private View cancelTxt;
     private List<GridView> gridViewList;
-    private LinkedHashMap<Object, Object> chooseSingerList;
     public HttpControler httpControler;
     private List<RspSinger> mData;
-
+    private boolean isLoaded = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +55,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
         AppManager.getAppManager().addActivity(this);
         gridViewList = new ArrayList<>();
         mData = new ArrayList<>();
-        chooseSingerList = new LinkedHashMap<>();
+        LinkedHashMap<Object, Object> chooseSingerList = new LinkedHashMap<>();
         chooseSingerList.put(1, null);
         chooseSingerList.put(2, null);
         chooseSingerList.put(3, null);
@@ -97,16 +97,18 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                String singerName = s.toString();
-                try {
-                    singerName = URLEncoder.encode(singerName,"utf-8");
-                    singerName = URLEncoder.encode(singerName,"utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                if (isLoaded) {
+                    isLoaded = false;
+                    String singerName = s.toString();
+                    try {
+                        singerName = URLEncoder.encode(singerName, "utf-8");
+                        singerName = URLEncoder.encode(singerName, "utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    searchData(singerName);
                 }
-                searchData(singerName);
             }
-
             @Override
             public void afterTextChanged(Editable s) {
             }
@@ -121,6 +123,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
         httpControler.searchArtists(new IHttpRspCallBack() {
             @Override
             public void success(HttpResponse response) {
+                mData.clear();
                 List<RspSinger> rspSingerList = new ArrayList<>();
                 try {
                     JSONArray jsonArray = new JSONArray(response.getMessage());
@@ -156,7 +159,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
         searchEdit = (EditText) findViewById(R.id.search_edit);
         vpg = (ViewPager) findViewById(R.id.singer_vpg);
         points = (LinearLayout) findViewById(R.id.points);
-        cancelTxt = findViewById(R.id.cancel_txt);
+        View cancelTxt = findViewById(R.id.cancel_txt);
 
         cancelTxt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,9 +171,8 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
 
     private void loadView() {
         int change = 0;
-        HashMap<Integer, List<RspSinger>> hashMap = new HashMap<>();
+        SparseArray<List<RspSinger>> hashMap = new SparseArray<>();
         points.removeAllViews();
-        hashMap.clear();
         List<RspSinger> save = new ArrayList<>();
         for (int i = 0; i < mData.size(); i++) {
             int index = i / 6;
@@ -218,7 +220,7 @@ public class SearchSingerActivity extends AutoLayoutActivity implements BaseAdap
         }
 
         vpg.setAdapter(new ChooseSingerVpgAdapter(gridViewList));
-
+        isLoaded = true;
     }
 
     @Override

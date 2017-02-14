@@ -41,8 +41,7 @@ public class BaseAppPreference {
     }
 
     protected SharedPreferences.Editor editor() {
-        SharedPreferences.Editor editor = preferences().edit();
-        return editor;
+        return preferences().edit();
     }
 
     protected SharedPreferences preferences() {
@@ -50,9 +49,7 @@ public class BaseAppPreference {
 
         if(contextWeakReference.get() !=null){
 
-            SharedPreferences preferences = contextWeakReference.get().getSharedPreferences(PREFERENCE, contextWeakReference.get().MODE_PRIVATE);
-
-            return preferences;
+            return contextWeakReference.get().getSharedPreferences(PREFERENCE, contextWeakReference.get().MODE_PRIVATE);
         }
 
         return null;

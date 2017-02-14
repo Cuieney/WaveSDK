@@ -1,5 +1,6 @@
 package com.feetsdk.android.feetsdk.stepcount;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.Service;
 import android.content.Context;
@@ -18,6 +19,7 @@ import java.util.Calendar;
  * Created by cuieney on 16/12/21.
  *
  */
+@SuppressLint("Registered")
 public class StepService extends Service{
     private StepDetector stepDetector;
     public SensorManager sensormanager;

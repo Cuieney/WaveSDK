@@ -23,28 +23,28 @@
 -keep class com.feetsdk.android.common.exception.** { *; }
 #-keep class com.feetsdk.android.common.utils.** { *; }
 -keep class com.feetsdk.android.common.utils.Logger { *; }
--keep class com.feetsdk.android.feetsdk.pedometer.** { *; }
+#-keep class com.feetsdk.android.feetsdk.pedometer.** { *; }
 #-keep class com.feetsdk.android.feetsdk.db.domain.** { *;}
 -keep class com.feetsdk.android.feetsdk.annotation.** { *; }
 
 
 -keep class com.feetsdk.android.FeetSdk {*;}
--keep class com.feetsdk.android.feetsdk.Music { *;}
--keep class com.feetsdk.android.feetsdk.stepcount.StepController{*;}
--keep class com.feetsdk.android.feetsdk.entity.request.ResRunLog{*;}
--keep class com.feetsdk.android.feetsdk.entity.request.ResRunLog$DeviceBean{*;}
--keep class com.feetsdk.android.feetsdk.entity.request.ResRunLog$SongsBean{*;}
--keep class com.feetsdk.android.feetsdk.stepcount.IController{*;}
--keep class com.feetsdk.android.feetsdk.stepcount.IStepChange{*;}
--keep class com.feetsdk.android.feetsdk.download.DownloadControler {
+#-keep class com.feetsdk.android.feetsdk.Music { *;}
+#-keep class com.feetsdk.android.feetsdk.stepcount.StepController{*;}
+#-keep class com.feetsdk.android.feetsdk.entity.request.ResRunLog{*;}
+#-keep class com.feetsdk.android.feetsdk.entity.request.ResRunLog$DeviceBean{*;}
+#-keep class com.feetsdk.android.feetsdk.entity.request.ResRunLog$SongsBean{*;}
+#-keep class com.feetsdk.android.feetsdk.stepcount.IController{*;}
+#-keep class com.feetsdk.android.feetsdk.stepcount.IStepChange{*;}
+#-keep class com.feetsdk.android.feetsdk.download.DownloadControler {
 #     public void startDownload(...);
 #     public void pauseDownload();
 #     public ** getCurrentProgress();
 #     public void restart(...);
 #     public void resetPause();
-}
--keep class com.feetsdk.android.feetsdk.download.IUpdateProgressCallBack {*;}
--keep class com.feetsdk.android.feetsdk.http.HttpControler {
+#}
+#-keep class com.feetsdk.android.feetsdk.download.IUpdateProgressCallBack {*;}
+#-keep class com.feetsdk.android.feetsdk.http.HttpControler {
 #     public void getArtists(...);
 #     public void searchArtists(...);
 #     public void postArtists(...);
@@ -53,14 +53,14 @@
 #     public void deleteFavorite(...);
 #     public void getUserInfo(...);
 #     public void postRunLog(...);
-}
--keep class com.feetsdk.android.feetsdk.http.HttpResponse {*;}
--keep class com.feetsdk.android.feetsdk.musicplayer.MusicController {*;}
--keep class com.feetsdk.android.feetsdk.musicplayer.OnMusicChangeListener {*;}
--keep class com.feetsdk.android.feetsdk.musicplayer.MusicInfo {*;}
+#}
+#-keep class com.feetsdk.android.feetsdk.http.HttpResponse {*;}
+#-keep class com.feetsdk.android.feetsdk.musicplayer.MusicController {*;}
+#-keep class com.feetsdk.android.feetsdk.musicplayer.OnMusicChangeListener {*;}
+#-keep class com.feetsdk.android.feetsdk.musicplayer.MusicInfo {*;}
 
--keep class com.feetsdk.android.feetsdk.http.IHttpRspCallBack {*;}
--keep class com.feetsdk.android.feetsdk.player.PlayerControler {
+#-keep class com.feetsdk.android.feetsdk.http.IHttpRspCallBack {*;}
+#-keep class com.feetsdk.android.feetsdk.player.PlayerControler {
 #     public void pause();
 #     public void start();
 #     public void next();
@@ -73,8 +73,8 @@
 #     public void registerMusicChange(...);
 #     public void registerStepChange(...);
 #     public boolean isPlaying();
-}
--keep class com.feetsdk.android.feetsdk.music.MusicHelper {
+#}
+#-keep class com.feetsdk.android.feetsdk.music.MusicHelper {
 #     public ** getListenedMusic();
 #     public ** getFavoriteMusic();
 #     public void favFromSong(...);
@@ -82,12 +82,19 @@
 #     public void favFromMsc(...);
 #     public void deleteFromMsc(...);
 #     public void clearFeetSdk();
-}
--keep class com.feetsdk.android.feetsdk.player.callBack.IMusicChange {*;}
+#}
+#-keep class com.feetsdk.android.feetsdk.player.callBack.IMusicChange {*;}
 
 -keep class com.feetsdk.android.feetsdk.ui.FwController{
-     public void show();
+     public void show(...);
      public void dismiss();
+     public void remove();
+     public void pauseMusic();
+     public void stopMusic();
+     public void playMusic();
+     public void setBpm(...);
+     public void setAutoBpm(...);
+     public void setLocation(...);
 }
 
 -keep class com.feetsdk.android.feetsdk.player.JniBridge{*;}

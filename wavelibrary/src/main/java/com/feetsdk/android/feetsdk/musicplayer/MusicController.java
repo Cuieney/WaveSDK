@@ -21,7 +21,6 @@ public class MusicController implements PlaybackManager.MyMediaSession {
     public final MusicProxy musicProxy;
     private Context mContext;
     private MediaControllerCompat mController;
-    private Music mMetadataCompat;
     //    private WeakReference<OnMusicChangeListener> wrOnMusicChange;
 //    private WeakReference<OnMediaControllerListener> wrOnMediaController;
     private OnMusicChangeListener onMusicChangeListener;
@@ -35,7 +34,7 @@ public class MusicController implements PlaybackManager.MyMediaSession {
             switch (intent.getAction()) {
                 case MusicProxy.ACTION_MEDIA_DATA:
                     synchronized (MusicController.class) {
-                        mMetadataCompat = extras.getParcelable(MusicProxy.KEY_MEDIA_DATA);
+                        Music mMetadataCompat = extras.getParcelable(MusicProxy.KEY_MEDIA_DATA);
                         if (onMusicChangeListener != null) {
                             onMusicChangeListener.onMusicChange(mMetadataCompat);
                         }

@@ -101,10 +101,9 @@ public class QueueManager {
     }
 
     private Music localSong2Music(LocalSongs song){
-        Music msc = new Music(song.getSongId(), song.getSongName(), song.getCoverImageUrl(),
+        return new Music(song.getSongId(), song.getSongName(), song.getCoverImageUrl(),
                 song.getProgress(), song.getPath(), song.getSingerName(), song.getTempo(),
                 song.getSize(), song.getCollection(), song.getListener(),song.getImgPath());
-        return msc;
     }
 
 

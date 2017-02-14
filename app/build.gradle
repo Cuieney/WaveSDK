@@ -37,6 +37,5 @@ dependencies {
     compile(name: 'wavelibrary-release', ext: 'aar')
     compile 'com.liulishuo.filedownloader:library:1.0.2'
     compile 'org.greenrobot:greendao:3.1.1'
-    compile project(path: ':LibMarsdaemon')
     compile 'com.zhy:autolayout:1.4.5'
 }

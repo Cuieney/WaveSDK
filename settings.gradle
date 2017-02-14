@@ -1,1 +1,1 @@
-include ':app', ':wavelibrary', ':LibMarsdaemon'
+include ':app', ':wavelibrary'

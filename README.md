@@ -24,7 +24,7 @@ dependencies {
 
 ##用法
 #### 第一步：
-在你项目的AndroidManifest.xml文件添加相应的权限
+在你项目的AndroidManifest.xml文件添加相应的权限（6.0+需自行申请权限）
 
 ```
     <uses-permission android:name="android.permission.INTERNET" />

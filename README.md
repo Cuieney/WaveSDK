@@ -14,7 +14,7 @@
 
 ```
 dependencies {
-    compile 'com.phl.sdk:wavelibrary:1.0.0'
+    compile 'com.phl.sdk:wavelibrary:1.0.3'
 }
 ```
 
@@ -105,14 +105,14 @@ public class MainActivity extends AppCompatActivity {
 | 方法名 | 备注 |
 | ------------ | ------------ |
 | show(Context)|  显示SDK图形用户界面 |
-| setLocation(int) |  设置图形界面位置（在show之前设置） |
 | remove() |  移除SDK |
 | dismiss() |  隐藏图形用户界面 |
 | playMusic() | 开启音乐播放（联动设置）  |
 | pauseMusic() |  暂停音乐播放开关 |
 | stopMusic() |  停止音乐播放 |
-| setAutoBpm(boolean) |  设置开启自动检测BPM(默认开启) |
+| setAutoBpm(boolean,Context) |  设置开启自动检测BPM(默认开启) |
 | setBpm(int) |  可以手动设置音乐节奏（需提前调用setAutoBpm（false）） |
+| setLocation(int) |  设置图形界面位置（在show和setAutoBpm方法之前设置） |
 
 
 ###项目依赖

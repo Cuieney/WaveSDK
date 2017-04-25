@@ -7,7 +7,7 @@
 
 **WaveSDK**, 让音乐跟上你的步频，根据跑步记录，智能推送歌曲，可高度化定制二次开发，为Android开发者提供了简单,快捷的接口 *跑嗨乐*（源码并未开放，仅提供使用方法，本项目属于demo级别，如有侵权，请联系我删除整个项目）.
 
-##引入
+## 引入
 * Android Studio
 
 将WaveSDK引入
@@ -22,7 +22,7 @@ dependencies {
 
 建议使用As，方便版本更新。实在不行，只有复制粘贴源码了
 
-##用法
+## 用法
 #### 第一步：
 在你项目的AndroidManifest.xml文件添加相应的权限（6.0+需自行申请权限）
 
@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 ```
-##目前开放接口如下
-###全局接口说明（FeetSdk）
+## 目前开放接口如下
+### 全局接口说明（FeetSdk）
 | 方法名 | 备注 |
 | ------------ | ------------ |
 | init(Context,String, String)|  初始化SDK,配置AppKey，AppChannel |
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 | getFeetUiController() |  获取ui控制器 |
 <br>暂时只开放目前接口
 
-###FwController接口说明
+### FwController接口说明
 | 方法名 | 备注 |
 | ------------ | ------------ |
 | show(Context)|  显示SDK图形用户界面 |
@@ -115,12 +115,12 @@ public class MainActivity extends AppCompatActivity {
 | setLocation(int) |  设置图形界面位置（在show和setAutoBpm方法之前设置） |
 
 
-###项目依赖
+### 项目依赖
 GreenDAO： <https://github.com/greenrobot/greenDAO>
 <br>AndroidAutoLayout:<https://github.com/hongyangAndroid/AndroidAutoLayout>
 <br>FileDownloader:<https://github.com/lingochamp/FileDownloader>
 
-###问题提交
+### 问题提交
 
 Email: <cuieney@163.com> link.
 
